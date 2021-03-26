@@ -1,0 +1,1085 @@
+<?xml version="1.0"?>
+<!--  ModelNumber=ODK4
+      SerialNumber=1415408
+      swVersion=1.7.2
+  -->
+<config product="odk" config_id="odkiv" config_ref_company="Luminator">
+<config_creation_date>Fri Feb 27 15:06:24 1970</config_creation_date>
+<config_description>Meaningful description of this valuable config file</config_description>
+    <CFGDATA_CONFIG_VERSION type="integer">5</CFGDATA_CONFIG_VERSION>
+    <CFGDATA_EMERG_AUTO_FLAG type="integer">0</CFGDATA_EMERG_AUTO_FLAG>
+    <CFGDATA_MMI_PASSWD type="opaque">6511</CFGDATA_MMI_PASSWD>
+    <CFGDATA_MMI_BACKLT_AUTO_FLAG type="integer">0</CFGDATA_MMI_BACKLT_AUTO_FLAG>
+    <CFGDATA_MMI_BACKLT_MIN type="integer">40</CFGDATA_MMI_BACKLT_MIN>
+    <CFGDATA_MMI_BACKLT_MAX type="integer">95</CFGDATA_MMI_BACKLT_MAX>
+    <CFGDATA_MMI_BACKLT_DEFAULT type="integer">89</CFGDATA_MMI_BACKLT_DEFAULT>
+    <CFGDATA_MMI_BACKGROUND type="opaque">NO IMAGE NAME</CFGDATA_MMI_BACKGROUND>
+    <CFGDATA_MMI_LANG_DEF type="opaque">lang_english.xml</CFGDATA_MMI_LANG_DEF>
+    <CFGDATA_MMI_MAX_REPORT_COUNT type="integer">100</CFGDATA_MMI_MAX_REPORT_COUNT>
+    <CFGDATA_MMI_BUZZ type="integer">0</CFGDATA_MMI_BUZZ>
+    <CFGDATA_MMI_TOUCH type="integer">1</CFGDATA_MMI_TOUCH>
+    <CFGDATA_MMI_SIGN type="integer">1</CFGDATA_MMI_SIGN>
+    <CFGDATA_MMI_USER_TO type="integer">0</CFGDATA_MMI_USER_TO>
+    <CFGDATA_MMI_BUTTON_TTO type="integer">0</CFGDATA_MMI_BUTTON_TTO>
+    <CFGDATA_POWER_OFF_DELAY type="integer">30</CFGDATA_POWER_OFF_DELAY>
+    <CFGDATA_ACCEPT_DUP_CODES type="integer">0</CFGDATA_ACCEPT_DUP_CODES>
+    <CFGDATA_STRICT_ODK3_J1708_COMPAT type="integer">1</CFGDATA_STRICT_ODK3_J1708_COMPAT>
+    <CFGDATA_INFOTAIN_FLAG type="integer">0</CFGDATA_INFOTAIN_FLAG>
+    <CFGDATA_ETHX_MODE type="integer">2</CFGDATA_ETHX_MODE>
+    <CFGDATA_ENH_LOGGING type="integer">0</CFGDATA_ENH_LOGGING>
+    <CFGDATA_GENIF_LOGGING type="integer">0</CFGDATA_GENIF_LOGGING>
+    <CFGDATA_ERA_ENABLE type="integer">0</CFGDATA_ERA_ENABLE>
+    <CFGDATA_ERA_SIGN type="integer">10</CFGDATA_ERA_SIGN>
+    <CFGDATA_DVIR_HOST type="opaque"></CFGDATA_DVIR_HOST>
+    <CFGDATA_DVIR_PORT type="integer">262165</CFGDATA_DVIR_PORT>
+    <CFGDATA_DVIR_TFTP_FTP type="integer">299777</CFGDATA_DVIR_TFTP_FTP>
+    <CFGDATA_DVIR_USER_NAME type="opaque"></CFGDATA_DVIR_USER_NAME>
+    <CFGDATA_DVIR_PASSWORD type="opaque"></CFGDATA_DVIR_PASSWORD>
+    <CFGDATA_DVIR_PATH type="opaque"></CFGDATA_DVIR_PATH>
+    <CFGDATA_DVIR_PULL_FILE type="opaque"></CFGDATA_DVIR_PULL_FILE>
+    <CFGDATA_DVIR_CONF_PATH type="opaque"></CFGDATA_DVIR_CONF_PATH>
+    <CFGDATA_DVIR_UPDATE_EDIT type="integer">0</CFGDATA_DVIR_UPDATE_EDIT>
+    <CFGDATA_XFER_RETRY_MINIT type="integer">5</CFGDATA_XFER_RETRY_MINIT>
+    <CFGDATA_NTP_SERVE_PATH type="opaque"></CFGDATA_NTP_SERVE_PATH>
+    <CFGDATA_NTP_TIMEOUT type="integer">0</CFGDATA_NTP_TIMEOUT>
+
+    <gpio>    
+        <LOW type="integer">0</LOW>
+        <HIGH type="integer">1</HIGH>
+        <PWM type="integer">2</PWM>
+        <LOGICAL type="integer">3</LOGICAL>
+        <INPUT type="integer">0</INPUT>
+        <OUTPUT type="integer">1</OUTPUT>
+        <IN_NONE type="integer">0</IN_NONE>
+        <MSG1 type="integer">1</MSG1>
+        <MSG2 type="integer">2</MSG2>
+        <MSG3 type="integer">3</MSG3>
+        <MSG4 type="integer">4</MSG4>
+        <SW_POWER type="integer">5</SW_POWER>
+        <MX_SW_PWR type="integer">6</MX_SW_PWR>
+        <EMERGENCY type="integer">7</EMERGENCY>
+        <LED_POWER type="integer">8</LED_POWER>
+        <WCHAIR type="integer">9</WCHAIR>
+        <BIKE_RACK type="integer">10</BIKE_RACK>
+        <YIELD type="integer">11</YIELD>
+        <FR_DOOR type="integer">12</FR_DOOR>
+        <BK_DOOR type="integer">13</BK_DOOR>
+        <STOP_REQ type="integer">14</STOP_REQ>
+        <ADA_REQ type="integer">15</ADA_REQ>
+        <ON type="integer">16</ON>
+        <OFF type="integer">17</OFF>
+        <NORMAL type="integer">18</NORMAL>
+        <SWEEPER type="integer">19</SWEEPER>
+        <REVERSE type="integer">20</REVERSE>
+        <OUT_NONE type="integer">0</OUT_NONE>
+        <LIGHTING type="integer">1</LIGHTING>
+        <BOGUS type="integer">2</BOGUS>
+
+        <odk_pin>            
+        <number type="integer">0</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>EMERGENCY</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">1</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>LED_POWER</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">2</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>HIGH</sense>
+        <priority type="integer">0</priority>
+        <meaning>SW_POWER</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">3</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>MSG1</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">4</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>MSG2</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">5</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>MSG3</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">6</number>
+        <enable type="integer">1</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>MSG4</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">7</number>
+        <enable type="integer">0</enable>
+        <direction>OUTPUT</direction>
+        <sense>HIGH</sense>
+        <priority type="integer">0</priority>
+        <meaning>LIGHTING</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <odk_pin>            
+        <number type="integer">8</number>
+        <enable type="integer">0</enable>
+        <direction>OUTPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>BOGUS</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </odk_pin>
+
+        <gpiom_pin>            
+        <number type="integer">0</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">1</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">2</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">3</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">4</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">5</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">6</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">7</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">8</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">9</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">10</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">11</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">12</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">13</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">14</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">15</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">16</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">17</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">18</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">19</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">20</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">21</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">22</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">23</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">24</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">25</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">26</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">27</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">28</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">29</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">30</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <gpiom_pin>            
+        <number type="integer">31</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </gpiom_pin>
+
+        <virtual_pin>            
+        <number type="integer">0</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">1</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">2</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">3</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">4</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">5</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">6</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">7</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">8</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">9</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">10</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">11</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">12</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">13</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">14</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+
+        <virtual_pin>            
+        <number type="integer">15</number>
+        <enable type="integer">0</enable>
+        <direction>INPUT</direction>
+        <sense>LOW</sense>
+        <priority type="integer">0</priority>
+        <meaning>IN_NONE</meaning>
+        <outputState type="integer">0</outputState>
+        <group type="integer">0</group>
+        </virtual_pin>
+        <gpiom_enable type="integer">0</gpiom_enable>
+        <gpiom_number type="integer">0</gpiom_number>
+        <gpiom_sensorEnable type="integer">0</gpiom_sensorEnable>
+        <gpiom_samplePeriod type="integer">0</gpiom_samplePeriod>
+        <gpiom_windowSize type="integer">0</gpiom_windowSize>
+    </gpio>
+
+
+    <interfaces>    
+        <J1_GTI type="integer">0</J1_GTI>
+        <J2_1708 type="integer">1</J2_1708>
+        <J2_232 type="integer">2</J2_232>
+        <J2_485 type="integer">3</J2_485>
+        <J3_1939 type="integer">4</J3_1939>
+        <J3_ETH type="integer">5</J3_ETH>
+        <J4_485 type="integer">6</J4_485>
+        <J4_232 type="integer">7</J4_232>
+        <NONE type="integer">0</NONE>
+        <ODD type="integer">1</ODD>
+        <EVEN type="integer">2</EVEN>
+        <FULL type="integer">0</FULL>
+        <HALF type="integer">1</HALF>
+
+        <interface>            
+        <id>J1_GTI</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">19200</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/ttyS1</device>
+        </interface>
+
+        <interface>            
+        <id>J2_1708</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">9600</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/j17080</device>
+        </interface>
+
+        <interface>            
+        <id>J2_232</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">9600</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/ttySC1</device>
+        <dataBits type="integer">0</dataBits>
+        <stopBits type="integer">1</stopBits>
+        <parity>NONE</parity>
+        <control type="integer">0</control>
+        </interface>
+
+        <interface>            
+        <id>J2_485</id>
+        <enable type="integer">0</enable>
+        <bitrate type="integer">9600</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/ttySC0</device>
+        </interface>
+
+        <interface>            
+        <id>J3_1939</id>
+        <enable type="integer">0</enable>
+        <bitrate type="integer">9600</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/null</device>
+        </interface>
+
+        <interface>            
+        <id>J3_ETH</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">10000000</bitrate>
+        <duplex>FULL</duplex>
+        <device>eth0</device>
+        <ip_address>192.168.54.6</ip_address>
+        <ip_mask>255.255.255.0</ip_mask>
+        <ip_default_gw>192.168.54.1</ip_default_gw>
+        <domain></domain>
+        <hostname>odk</hostname>
+        <dhcp type="integer">0</dhcp>
+        <hw_address>04:23:24:25:26:27</hw_address>
+        <mrouter_port></mrouter_port>
+        <mrouter_ip></mrouter_ip>
+        </interface>
+
+        <interface>            
+        <id>J4_485</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">9600</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/ttyS3</device>
+        </interface>
+
+        <interface>            
+        <id>J4_232</id>
+        <enable type="integer">1</enable>
+        <bitrate type="integer">115200</bitrate>
+        <duplex>FULL</duplex>
+        <device>/dev/ttyS0</device>
+        <dataBits type="integer">0</dataBits>
+        <stopBits type="integer">1</stopBits>
+        <parity>NONE</parity>
+        <control type="integer">0</control>
+        </interface>
+    </interfaces>
+
+
+    <applications>    
+        <DEBUG type="integer">0</DEBUG>
+        <SSH type="integer">1</SSH>
+        <GENIF type="integer">2</GENIF>
+        <IVS type="integer">3</IVS>
+        <VIS type="integer">4</VIS>
+        <AVL type="integer">5</AVL>
+        <GTI type="integer">6</GTI>
+        <QD type="integer">7</QD>
+        <GPIOM type="integer">8</GPIOM>
+        <ETHX type="integer">9</ETHX>
+        <PACE type="integer">10</PACE>
+        <MDSCU type="integer">11</MDSCU>
+        <ORAMP type="integer">12</ORAMP>
+        <ERA type="integer">13</ERA>
+        <GENXFER type="integer">14</GENXFER>
+
+        <application>            
+        <id>DEBUG</id>
+        <enable type="integer">1</enable>
+        <intf>J4_232</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>SSH</id>
+        <enable type="integer">1</enable>
+        <intf>J3_ETH</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>GENIF</id>
+        <enable type="integer">1</enable>
+        <intf>J2_232</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>IVS</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>VIS</id>
+        <enable type="integer">0</enable>
+        <intf>J2_1708</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>AVL</id>
+        <enable type="integer">1</enable>
+        <intf>J2_1708</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>GTI</id>
+        <enable type="integer">1</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>QD</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>GPIOM</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>ETHX</id>
+        <enable type="integer">1</enable>
+        <intf>J3_ETH</intf>
+        <address type="integer">192 168 0 100 50060 50070 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>PACE</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>MDSCU</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>ORAMP</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>ERA</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+
+        <application>            
+        <id>GENXFER</id>
+        <enable type="integer">0</enable>
+        <intf>J1_GTI</intf>
+        <address type="integer">0 0 0 0 0 0 0 0 0 0</address>
+        </application>
+    </applications>
+
+
+    <loglevels>    
+        <SYSIF type="integer">0</SYSIF>
+        <MMIIF type="integer">1</MMIIF>
+        <DEBUGIF type="integer">2</DEBUGIF>
+        <FLASHIF type="integer">3</FLASHIF>
+        <GTIIF type="integer">4</GTIIF>
+        <DIAGIF type="integer">5</DIAGIF>
+        <GPIOIF type="integer">6</GPIOIF>
+        <USBIF type="integer">7</USBIF>
+        <J1708 type="integer">8</J1708>
+        <GENIF type="integer">9</GENIF>
+        <GPIOMUX type="integer">10</GPIOMUX>
+        <QUANTUM type="integer">11</QUANTUM>
+        <PMONIF type="integer">12</PMONIF>
+        <ETHX type="integer">13</ETHX>
+        <PACE type="integer">14</PACE>
+        <MDSU type="integer">15</MDSU>
+        <RAMP type="integer">16</RAMP>
+        <ERAIF type="integer">17</ERAIF>
+        <CATASTROPHIC type="integer">1</CATASTROPHIC>
+        <HIGH type="integer">2</HIGH>
+        <MEDIUM type="integer">4</MEDIUM>
+        <STATUS type="integer">6</STATUS>
+        <process>SYSIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>MMIIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>DEBUGIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>FLASHIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>GTIIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>DIAGIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>GPIOIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>USBIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>J1708
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>GENIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>GPIOMUX
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>QUANTUM
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>PMONIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>ETHX
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>PACE
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>MDSU
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>RAMP
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+        <process>ERAIF
+        <loglevel>CATASTROPHIC</loglevel>
+        </process>
+    </loglevels>
+
+
+    <quantumD>    
+        <numControllers type="integer">0</numControllers>
+        <num_meanings type="integer">0</num_meanings>
+        <meanings type="integer">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</meanings>
+        <maxPwm type="integer">100</maxPwm>
+        <minPwm type="integer">0</minPwm>
+        <pwmStep type="integer">10</pwmStep>
+        <maxSwitchPwrDly type="integer">30</maxSwitchPwrDly>
+        <minSwitchPwrDly type="integer">0</minSwitchPwrDly>
+        <switchPwrDlyStep type="integer">1</switchPwrDlyStep>
+        <maxIgnDly type="integer">30</maxIgnDly>
+        <minIgnDly type="integer">0</minIgnDly>
+        <ignDlyStep type="integer">1</ignDlyStep>
+        <maxRamp type="integer">5000</maxRamp>
+        <minRamp type="integer">0</minRamp>
+        <rampStep type="integer">100</rampStep>
+        <maxRampDly type="integer">5000</maxRampDly>
+        <minRampDly type="integer">0</minRampDly>
+        <rampDlyStep type="integer">100</rampDlyStep>
+        <locShutoffDly type="integer">600</locShutoffDly>
+    </quantumD>
+
+
+    <lighting>    
+        <Dark type="integer">0</Dark>
+        <Overcast type="integer">1</Overcast>
+        <Bright type="integer">2</Bright>
+        <GPIO-MUX type="integer">0</GPIO-MUX>
+        <ODK4 type="integer">1</ODK4>
+        <Disabled type="integer">0</Disabled>
+        <PWM type="integer">1</PWM>
+        <QuantumD type="integer">2</QuantumD>
+        <scheme>Bright</scheme>
+        <light_ctrl>Disabled</light_ctrl>
+        <light_sensor>ODK4</light_sensor>
+        <light_sensor_max type="integer">182</light_sensor_max>
+        <light_sensor_min type="integer">30</light_sensor_min>
+        <driver_scheme_select type="integer">0</driver_scheme_select>
+        <auto_dim type="integer">0</auto_dim>
+        <pwm_min type="integer">25</pwm_min>
+        <pwm_max type="integer">95</pwm_max>
+        <pwm_default type="integer">50</pwm_default>
+    </lighting>
+
+
+    <diag>    
+        <log_size type="integer">128</log_size>
+        <power_off_delay type="integer">0</power_off_delay>
+        <power_off_beep type="integer">0</power_off_beep>
+        <power_off_sign_disp type="integer">0</power_off_sign_disp>
+        <sensor_change_min type="integer">3200</sensor_change_min>
+        <suppress_notice type="integer">1</suppress_notice>
+        <dfltMaxFail type="integer">20</dfltMaxFail>
+        <dfltMaxVerticalFail type="integer">4</dfltMaxVerticalFail>
+        <dfltMaxConsecutiveHorizFail type="integer">4</dfltMaxConsecutiveHorizFail>
+    </diag>
+
+
+    <mmiconfig>    
+        <No_time type="integer">0</No_time>
+        <Civilian1 type="integer">1</Civilian1>
+        <Civilian2 type="integer">2</Civilian2>
+        <Military type="integer">3</Military>
+        <No_Window type="integer">0</No_Window>
+        <Show_Window type="integer">1</Show_Window>
+        <time_format>No_time</time_format>
+        <time_zone>CST6CDT</time_zone>
+        <next_stop_window>No_Window</next_stop_window>
+        <stop_req_window>No_Window</stop_req_window>
+    </mmiconfig>
+
+</config>

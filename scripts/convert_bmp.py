@@ -21,7 +21,7 @@ def calc_checksum(seq):
     z=[]
     for i in x:
         z.append(int(''.join(i),16)) # Convert each pair into hex values
-    return 256 - (sum(z) % 256) # Sum all those values, subtract from 256
+    return (256 - (sum(z) % 256))%256 # Sum all those values, subtract from 256
 
 def print_array(array):
     for i in array:
@@ -60,3 +60,4 @@ if __name__ == "__main__":
     assert (len(sys.argv) == 2), "Must specify bitmap file to convert, and only that" 
     image_array = load_bmp_as_array(sys.argv[1])
     print(generate_sign_code(image_array))
+

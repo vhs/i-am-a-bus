@@ -1,0 +1,1 @@
+./send_text.sh "$1" > /dev/cu.usbserial-FTC87H3E

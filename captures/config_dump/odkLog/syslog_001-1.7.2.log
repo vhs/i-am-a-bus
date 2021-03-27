@@ -1,0 +1,44 @@
+Feb 27 15:00:11 odkhost syslog.info syslogd started: BusyBox v1.10.4
+Feb 27 15:00:11 odkhost daemon.info init: init: starting pid 959, tty '/dev/null': '/sbin/klogd -n'
+Feb 27 15:00:11 odkhost user.notice kernel: klogd started: BusyBox v1.10.4 (2016-12-06 16:01:33 CST)
+Feb 27 15:03:50 odkhost user.debug kernel: hub 1-0:1.0: state 7 ports 2 chg 0000 evt 0002
+Feb 27 15:03:50 odkhost user.debug kernel: at91_ohci at91_ohci: GetStatus roothub.portstatus [0] = 0x00010101 CSC PPS CCS
+Feb 27 15:03:50 odkhost user.debug kernel: hub 1-0:1.0: port 1, status 0101, change 0001, 12 Mb/s
+Feb 27 15:03:50 odkhost user.debug kernel: hub 1-0:1.0: debounce: port 1: total 100ms stable 100ms status 0x101
+Feb 27 15:03:50 odkhost user.debug kernel: at91_ohci at91_ohci: GetStatus roothub.portstatus [0] = 0x00100103 PRSC PPS PES CCS
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: new full speed USB device using at91_ohci and address 2
+Feb 27 15:03:50 odkhost user.debug kernel: at91_ohci at91_ohci: GetStatus roothub.portstatus [0] = 0x00100103 PRSC PPS PES CCS
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1: USB quirks for this device: 2
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1: default language 0x0409
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1: uevent
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1: usb_probe_device
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: configuration #1 chosen from 1 choice
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1: adding 1-1:1.0 (config #1, interface 0)
+Feb 27 15:03:50 odkhost user.debug kernel: usb 1-1:1.0: uevent
+Feb 27 15:03:50 odkhost user.debug kernel: usb-storage 1-1:1.0: usb_probe_interface
+Feb 27 15:03:50 odkhost user.debug kernel: usb-storage 1-1:1.0: usb_probe_interface - got id
+Feb 27 15:03:50 odkhost user.info kernel: scsi0 : SCSI emulation for USB Mass Storage devices
+Feb 27 15:03:50 odkhost user.debug kernel: usb-storage: device found at 2
+Feb 27 15:03:50 odkhost user.debug kernel: usb-storage: waiting for device to settle before scanning
+Feb 27 15:03:50 odkhost user.debug kernel: drivers/usb/core/inode.c: creating file '002'
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: New USB device found, idVendor=0204, idProduct=6025
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: Product: Flash Disk      
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: Manufacturer: CBM     
+Feb 27 15:03:50 odkhost user.info kernel: usb 1-1: SerialNumber: 26142901655D1B03
+Feb 27 15:03:50 odkhost user.debug kernel: hub 1-0:1.0: state 7 ports 2 chg 0000 evt 0002
+Feb 27 15:03:55 odkhost user.notice kernel: scsi 0:0:0:0: Direct-Access     CBM      Flash Disk       5.00 PQ: 0 ANSI: 2
+Feb 27 15:03:55 odkhost user.notice kernel: sd 0:0:0:0: [sda] 4098048 512-byte hardware sectors (2098 MB)
+Feb 27 15:03:55 odkhost user.debug kernel: at91_ohci at91_ohci: urb c3d9d4e0 path 1 ep1in 92120000 cc 9 --> status -121
+Feb 27 15:03:55 odkhost user.notice kernel: sd 0:0:0:0: [sda] Write Protect is off
+Feb 27 15:03:55 odkhost user.debug kernel: sd 0:0:0:0: [sda] Mode Sense: 0b 00 00 08
+Feb 27 15:03:55 odkhost user.err kernel: sd 0:0:0:0: [sda] Assuming drive cache: write through
+Feb 27 15:03:55 odkhost user.notice kernel: sd 0:0:0:0: [sda] 4098048 512-byte hardware sectors (2098 MB)
+Feb 27 15:03:55 odkhost user.debug kernel: at91_ohci at91_ohci: urb c3d9d4e0 path 1 ep1in 93120000 cc 9 --> status -121
+Feb 27 15:03:55 odkhost user.notice kernel: sd 0:0:0:0: [sda] Write Protect is off
+Feb 27 15:03:55 odkhost user.debug kernel: sd 0:0:0:0: [sda] Mode Sense: 0b 00 00 08
+Feb 27 15:03:55 odkhost user.err kernel: sd 0:0:0:0: [sda] Assuming drive cache: write through
+Feb 27 15:03:55 odkhost user.info kernel:  sda:
+Feb 27 15:03:55 odkhost user.info kernel:  sda1
+Feb 27 15:03:55 odkhost user.notice kernel: sd 0:0:0:0: [sda] Attached SCSI removable disk
+Feb 27 15:03:55 odkhost user.debug kernel: usb-storage: device scan complete

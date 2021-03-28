@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title>I Am A Bus Sign - Control System</title>
+    <style>
+        #root {
+            width: 50vw;
+            margin: auto;
+        }
+
+        .row {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div id="LEDTextSelector"></div>
+        Current selection: <input id="currentLEDText" type="text" /><br />
+        <button id="updateTextButton">Update LED Sign</button>
+    </div>
+    <script>
+        function init() {
+            window.state = { config: { texts: { options: [] } }, text: '', error: null }
+
+            try {
+                fetch('/config.json')
+                    .then((result) => result.json())
+                    .then((config) => {
+                        window.state.config = config
+                        return config
+                    })
+                    .then(fillLEDTextSelector)
+            } catch (err) {
+                console.log('Error fetching config file:')
+                console.log(err)
+                window.state.error = 'We encountered an unexpected error while fetching config file'
+            }
+
+            document.getElementById('updateTextButton').addEventListener('click', updateTextButtonHandler)
+        }
+
+        function fillLEDTextSelector(config) {
+            console.log('fillLEDTextSelector', 'config:', config)
+
+            const LEDTextSelector = document.getElementById('LEDTextSelector')
+            LEDTextSelector.innerHTML = '';
+
+            for (let idx in config.texts.options) {
+                let option = config.texts.options[idx]
+
+                let radioElementId = 'LEDTextSelector' + idx
+
+                var radio = document.createElement("input");
+                radio.setAttribute('id', radioElementId)
+                radio.setAttribute('name', 'LEDTextSelector')
+                radio.setAttribute('type', 'radio')
+                radio.addEventListener('click', () => selectTextButtonHandler(idx))
+
+                LEDTextSelector.appendChild(radio)
+
+
+                var label = document.createElement("label")
+                label.setAttribute('for', radioElementId)
+
+                var textnode = document.createTextNode(option)
+                label.appendChild(textnode);
+
+                LEDTextSelector.appendChild(label)
+
+                LEDTextSelector.appendChild(document.createElement('br'))
+            }
+
+        }
+
+        function selectTextButtonHandler(idx) {
+            console.log('selectTextButtonHandler', 'idx:', idx)
+            console.log('selectTextButtonHandler', 'window.state.config.texts.options', window.state.config.texts.options)
+            window.state.text = window.state.config.texts.options[idx]
+            document.getElementById('currentLEDText').value = window.state.text
+        }
+
+        function updateTextButtonHandler() {
+            if (window.state.text === '') { return alert('Error: No text selected') }
+
+            try {
+                fetch('/api/updatetext', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'text=' + encodeURIComponent(window.state.text)
+                })
+            } catch (err) {
+                return alert('Error: ' + err)
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init)
+    </script>
+</body>
+
+</html>

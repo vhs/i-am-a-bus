@@ -1,10 +1,11 @@
-static const char *myStrings[] {
+static const char *boot_commands[] {
     ":01000102FFFD\r\n:01000202FFFC\r\n",
     ":0100020200FB\r\n", 
     ":01000203A159\r\n",
     ":1000000008B300100C100078030028000000000066\r\n:00000101FE\r\n:0100020200FB\r\n",
     ":01000302FFFB\r\n:01000402FFFA\r\n:01000A02FFF4\r\n:01000B02FFF3\r\n:0100020200FB\r\n"
 };
+    
 static const char testMessage[] = 
     ":1000000001120000FFFFFFFFFFFFFFFFFFFFFFFFE9\r\n"
     ":10001000FFFFFFFF07F807F0FFF3FFCFFFCFFFF36E\r\n"
@@ -22,3 +23,11 @@ static const char testMessage[] =
     ":1000D000FFFFFFFF1FF71FE6E7CCE7CCE7CC9FE170\r\n"
     ":1000E0009FF3FFEFFFFFFFFFFFFFFFFFFFFFFFFF9C\r\n"
     ":1000F000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF10\r\n";
+
+static const char *update_commands[] {
+    ":01000203A258\r\n",
+    testMessage,
+    "::00001001EF\r\n", 
+    "::0100020200FB\r\n",
+    "::0100020600F7\r\n"
+    };

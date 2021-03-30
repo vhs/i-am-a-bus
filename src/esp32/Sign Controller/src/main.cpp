@@ -3,6 +3,7 @@
 #include <U8g2lib.h>
 #include <FunctionFSM.h>
 #include "sign_static.h"
+#include <SoftwareSerial.h>
 
 #define pin_led_green 4
 #define pin_led_red 23
@@ -22,6 +23,7 @@
 
 /* Constructor  for screen */
 U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R0);
+SoftwareSerial rs485;
 
 // clang-format off
 /*
@@ -87,6 +89,15 @@ FSM_STATE_Program_stop()
 {
   Serial.println("Leaving Program State");
 }
+void IRAM_ATTR ISR_rot_a() {
+    ;
+}
+void IRAM_ATTR ISR_rot_b() {
+    ;
+}
+void IRAM_ATTR ISR_rot_sw() {
+    ;
+}
 
 // fsm states 
 FunctionState state_boot(&FSM_STATE_Boot_start, nullptr, nullptr); 
@@ -117,10 +128,21 @@ setup()
   pinMode(pin_rot_b, OUTPUT);
   pinMode(pin_rot_sw, OUTPUT);
 
-  pinMode(pin_rs485_rx, INPUT);
-  pinMode(pin_rs485_tx, OUTPUT);
   pinMode(pin_rs485_en, OUTPUT);
-  digitalWrite(pin_rs485_en, LOW);
+  digitalWrite(pin_rs485_en, HIGH);
+  rs485.begin(19200, SWSERIAL_8N1, pin_rs485_rx, pin_rs485_tx, false, 256);
+  for (int i = 0; i < 5; i++) {
+    rs485.print(boot_commands[i]);
+    delay(300);
+  }
+  delay(1300);
+  for (int i = 0; i < 5; i++) {
+    rs485.print(update_commands[i]);
+    delay(300);
+  }
+
+
+
 }
 
 void loop()
@@ -130,7 +152,7 @@ void loop()
   u8g2.firstPage();
   do {
     u8g2.setFont(u8g2_font_ncenB14_tr);
-    u8g2.drawStr(0,20,"BITCH I'M A BUS");
+    u8g2.drawStr(0,20,"I AM A BUS");
   } while ( u8g2.nextPage() );
   delay(1000);
 }

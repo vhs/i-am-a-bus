@@ -1,0 +1,3 @@
+[submodule "src/esp32/Sign Controller/lib/function-fsm"]
+	path = src/esp32/Sign Controller/lib/function-fsm
+	url = https://github.com/JRVeale/function-fsm

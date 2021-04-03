@@ -78,9 +78,9 @@ class ConfigurationEditor extends Component {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(this.state.config)
+        body: 'config=' + encodeURIComponent(JSON.stringify(this.state.config))
       })
 
       this.props.updateConfig(this.state.config)

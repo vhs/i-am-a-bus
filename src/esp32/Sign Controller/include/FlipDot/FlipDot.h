@@ -17,7 +17,7 @@ public:
     {
         _msgDataLen = 0x00;
         _signAddress = 0x0000;
-        _msgType = FLIPDOT_MSG_TYPE_DEFAULT;
+        _msgType = 0x00;
         std::fill(_msgData, _msgData + sizeof(_msgData), 0);
         _checksum = 0x00;
     }

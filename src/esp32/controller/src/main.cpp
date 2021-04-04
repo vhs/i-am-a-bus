@@ -1,28 +1,6 @@
-<<<<<<< HEAD
-#include <Arduino.h>
-#include <SPI.h>
-#include <U8g2lib.h>
-#include <FunctionFSM.h>
-#include "sign_static.h"
-
-#include "config.h"
-=======
 #include "platform.h"
->>>>>>> FlipDot
 
 #include "config.h"
-
-/* Constructor  for screen */
-U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R0);
-
-// fsm states
-FunctionState state_boot(&FSM_STATE_Boot_start, nullptr, nullptr);
-FunctionState state_rest(&FSM_STATE_Rest_start, &FSM_STATE_Rest_loop, &FSM_STATE_Rest_stop);
-FunctionState state_select(&FSM_STATE_Select_start, &FSM_STATE_Select_loop, &FSM_STATE_Select_stop);
-FunctionState state_program(&FSM_STATE_Program_start, &FSM_STATE_Program_loop, &FSM_STATE_Program_stop);
-
-// fsm
-FunctionFsm fsm(&state_boot);
 
 void setup()
 {

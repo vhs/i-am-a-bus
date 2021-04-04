@@ -15,8 +15,15 @@ FSM States:
 // fsm state functions
 void FSM_STATE_Boot_start()
 {
-    Serial.println("Enter Boot state");
+    Serial.println("Entering Boot state");
     // Send a bunch of crap to the RS485 port to init it
+
+    Serial.print("Discovering LED signs...");
+    if (signBus.discoverSigns() > 0)
+    {
+        signBus.initializeSigns();
+    }
+    Serial.println("done!");
 }
 
 void FSM_STATE_Rest_start()
@@ -59,3 +66,12 @@ void FSM_STATE_Program_stop()
 {
     Serial.println("Leaving Program State");
 }
+
+// fsm states
+FunctionState state_boot(&FSM_STATE_Boot_start, nullptr, nullptr);
+FunctionState state_rest(&FSM_STATE_Rest_start, &FSM_STATE_Rest_loop, &FSM_STATE_Rest_stop);
+FunctionState state_select(&FSM_STATE_Select_start, &FSM_STATE_Select_loop, &FSM_STATE_Select_stop);
+FunctionState state_program(&FSM_STATE_Program_start, &FSM_STATE_Program_loop, &FSM_STATE_Program_stop);
+
+// fsm
+FunctionFsm fsm(&state_boot);

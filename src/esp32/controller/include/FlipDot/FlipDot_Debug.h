@@ -7,7 +7,7 @@
 class FlipDotDebugger
 {
 public:
-    String getPacketType(uint8_t msgType, uint8_t *msgData, uint8_t msgDataLen)
+    String getFrameType(uint8_t msgType, uint8_t *msgData, uint8_t msgDataLen)
     {
         String result = "";
 

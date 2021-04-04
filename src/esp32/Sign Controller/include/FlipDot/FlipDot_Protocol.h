@@ -1,6 +1,6 @@
 #pragma once
 
-#define FLIPDOT_MAX_DATA 256
+#define FLIPDOT_MAX_DATA 16
 
 #define FLIPDOT_PACKET_DATA_LEN_OFFSET 1
 #define FLIPDOT_PACKET_DATA_LEN_LEN FLIPDOT_PACKET_DATA_LEN_OFFSET + 2
@@ -67,14 +67,15 @@ struct FlipDotPacket
 {
     uint8_t msgType;
     uint8_t msgData[FLIPDOT_MAX_DATA];
+    uint8_t msgDataLen;
 };
 
 typedef struct FlipDotPacket FlipDotPacket;
 
-FlipDotPacket FlipDotPacket_Discovery = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_DISCOVER}};
+FlipDotPacket FlipDotPacket_Discovery = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_DISCOVER}, .msgDataLen = 0x01};
 
-FlipDotPacket FlipDotPacket_Goodbye = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_GOODBYE}};
+FlipDotPacket FlipDotPacket_Goodbye = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_GOODBYE}, .msgDataLen = 0x01};
 
-FlipDotPacket FlipDotPacket_Query_State = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_QUERY_STATE}};
+FlipDotPacket FlipDotPacket_Query_State = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_QUERY_STATE}, .msgDataLen = 0x01};
 
-FlipDotPacket FlipDotPacket_Pixels_Complete = {.msgType = FLIPDOT_MSG_TYPE_PIXEL_COMPLETE, .msgData = {FLIPDOT_DATA_PIXELS_COMPLETE}};
+FlipDotPacket FlipDotPacket_Pixels_Complete = {.msgType = FLIPDOT_MSG_TYPE_PIXEL_COMPLETE, .msgData = {FLIPDOT_DATA_PIXELS_COMPLETE}, .msgDataLen = 0x01};

@@ -27,9 +27,6 @@ FunctionState state_program(&FSM_STATE_Program_start, &FSM_STATE_Program_loop, &
 // fsm
 FunctionFsm fsm(&state_boot);
 
-// FlipDot library
-FlipDot flipDot;
-
 void setup()
 {
   Serial.begin(115200);

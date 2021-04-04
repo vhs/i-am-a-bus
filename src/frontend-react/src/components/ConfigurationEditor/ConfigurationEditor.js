@@ -55,7 +55,7 @@ class ConfigurationEditor extends Component {
 
     this.setState((currentState) => {
       const newState = Object.assign({}, currentState)
-      if (newState.config.texts.options[idx] !== undefined) delete newState.config.texts.options[idx]
+      if (newState.config.texts.options[idx] !== undefined) newState.config.texts.options.splice(idx, 1)
 
       return newState
     })

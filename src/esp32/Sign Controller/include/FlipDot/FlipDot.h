@@ -3,6 +3,8 @@
 #include <Arduino.h>
 
 #include "FlipDot/FlipDot_Protocol.h"
+#include "FlipDot/FlipDot_Debug.h"
+FlipDotDebugger flipDotDebugger;
 
 class FlipDot
 {
@@ -77,9 +79,11 @@ public:
         Serial.printf("Raw Packet:\t%s\n", _rawPacket);
         Serial.printf("Raw Packet Len:\t%d\n", _rawPacketLen);
         Serial.printf("\n");
-        Serial.printf("Data Length:\t%02x\n", _msgDataLen);
-        Serial.printf("Sign Address:\t%04X\n", _signAddress);
-        Serial.printf("Msg Type:\t%02X\n", _msgType);
+        Serial.printf("Data Length:\t0x%02X\n", _msgDataLen);
+        Serial.printf("Sign Address:\t0x%04X\n", _signAddress);
+        Serial.printf("Msg Type:\t0x%02X\n", _msgType);
+
+        Serial.printf("Packet Type:\t%s\n", flipDotDebugger.getPacketType(_msgType, _msgData, _msgDataLen).c_str());
 
         Serial.printf("Msg Data:\t");
 
@@ -88,12 +92,12 @@ public:
             if (d > 0)
                 Serial.printf(" ");
 
-            Serial.printf("%02X", _msgData[d]);
+            Serial.printf("0x%02X", _msgData[d]);
         }
 
         Serial.printf("\n");
 
-        Serial.printf("Checksum:\t%02X\n", _checksum);
+        Serial.printf("Checksum:\t0x%02X\n", _checksum);
 
         Serial.printf("\n");
     }

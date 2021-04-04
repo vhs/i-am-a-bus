@@ -2,20 +2,6 @@
 
 #include "config.h"
 
-/* Constructor  for screen */
-U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R0);
-
-SignBus signBus(PIN_RS485_RX, PIN_RS485_TX, PIN_RS485_EN);
-
-// fsm states
-FunctionState state_boot(&FSM_STATE_Boot_start, nullptr, nullptr);
-FunctionState state_rest(&FSM_STATE_Rest_start, &FSM_STATE_Rest_loop, &FSM_STATE_Rest_stop);
-FunctionState state_select(&FSM_STATE_Select_start, &FSM_STATE_Select_loop, &FSM_STATE_Select_stop);
-FunctionState state_program(&FSM_STATE_Program_start, &FSM_STATE_Program_loop, &FSM_STATE_Program_stop);
-
-// fsm
-FunctionFsm fsm(&state_boot);
-
 void setup()
 {
   Serial.begin(115200);

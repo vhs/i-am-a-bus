@@ -71,6 +71,7 @@ public:
 
     int initializeSigns()
     {
+        _initSigns = 0;
 
         for (int sa = 0; sa < FLIPDOT_MAX_SIGN; sa++)
         {
@@ -116,12 +117,15 @@ public:
                         if (_receiveFrame() && _flipDotRecv.getMsgType() == FLIPDOT_MSG_TYPE_REPORT_STATE && _flipDotRecv.getDataType() == FLIPDOT_STATE_CONFIG_RECEIVED)
                         {
                             _initializedSigns[sa] = true;
+                            _initSigns++;
                             Serial.printf("Sign %d is ONLINE\n", sa);
                         }
                     }
                 }
             }
         }
+
+        return _initSigns;
     }
 
 private:
@@ -131,6 +135,7 @@ private:
     FlipDot _flipDotSend;
     String _buffer;
     int _foundSigns = 0;
+    int _initSigns = 0;
     int _enPin;
 
     bool _sendFrame()
@@ -157,3 +162,5 @@ private:
         return _flipDotRecv.decodeFrame(_buffer);
     }
 };
+
+SignBus signBus(PIN_RS485_RX, PIN_RS485_TX, PIN_RS485_EN);

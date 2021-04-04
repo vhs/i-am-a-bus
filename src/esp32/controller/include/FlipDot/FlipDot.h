@@ -135,6 +135,8 @@ public:
         {
             checksum -= _msgData[d];
         }
+
+        _checksum = checksum;
     }
 
     uint16_t getSignAddress()

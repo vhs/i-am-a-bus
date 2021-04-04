@@ -17,6 +17,11 @@ void FSM_STATE_Boot_start()
 {
     Serial.println("Enter Boot state");
     // Send a bunch of crap to the RS485 port to init it
+
+    if (signBus.discoverSigns() > 0)
+    {
+        signBus.initializeSigns();
+    }
 }
 
 void FSM_STATE_Rest_start()

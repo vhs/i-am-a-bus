@@ -25,18 +25,18 @@ void setup()
 
   u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the display */
 
-  pinMode(pin_led_green, OUTPUT);
-  digitalWrite(pin_led_green, LOW);
-  pinMode(pin_led_red, OUTPUT);
-  digitalWrite(pin_led_green, LOW);
-  pinMode(pin_rot_a, OUTPUT);
-  pinMode(pin_rot_b, OUTPUT);
-  pinMode(pin_rot_sw, OUTPUT);
+  pinMode(PIN_LED_GREEN, OUTPUT);
+  digitalWrite(PIN_LED_GREEN, LOW);
+  pinMode(PIN_LED_RED, OUTPUT);
+  digitalWrite(PIN_LED_GREEN, LOW);
+  pinMode(PIN_ROT_A, OUTPUT);
+  pinMode(PIN_ROT_B, OUTPUT);
+  pinMode(PIN_ROT_SW, OUTPUT);
 
-  pinMode(pin_rs485_rx, INPUT);
-  pinMode(pin_rs485_tx, OUTPUT);
-  pinMode(pin_rs485_en, OUTPUT);
-  digitalWrite(pin_rs485_en, LOW);
+  pinMode(PIN_RS485_RX, INPUT);
+  pinMode(PIN_RS485_TX, OUTPUT);
+  pinMode(PIN_RS485_EN, OUTPUT);
+  digitalWrite(PIN_RS485_EN, LOW);
 }
 
 void loop()

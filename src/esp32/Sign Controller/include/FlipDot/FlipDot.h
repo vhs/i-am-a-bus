@@ -24,46 +24,46 @@ public:
         _checksum = 0x00;
     }
 
-    String encodePacket()
+    String encodeFrame()
     {
         if (!generateChecksum())
             return "ERROR";
 
-        String encodedPacket = ":";
+        String encodedFrame = ":";
 
-        encodedPacket += convertHex8(_msgDataLen);
-        encodedPacket += convertHex16(_signAddress);
-        encodedPacket += convertHex8(_msgType);
-        encodedPacket += convertHexData();
-        encodedPacket += convertHex8(_checksum);
+        encodedFrame += convertHex8(_msgDataLen);
+        encodedFrame += convertHex16(_signAddress);
+        encodedFrame += convertHex8(_msgType);
+        encodedFrame += convertHexData();
+        encodedFrame += convertHex8(_checksum);
 
-        encodedPacket.trim();
-        encodedPacket += "\r\n";
+        encodedFrame.trim();
+        encodedFrame += "\r\n";
 
-        return encodedPacket;
+        return encodedFrame;
     }
 
-    int decodePacket(String packet)
+    int decodeFrame(String frame)
     {
-        packet.trim();
+        frame.trim();
 
-        if (packet.length() > sizeof(_rawPacket))
+        if (frame.length() > sizeof(_rawFrame))
             return -1;
 
-        packet.toCharArray(_rawPacket, sizeof(_rawPacket));
-        _rawPacketLen = packet.length();
+        frame.toCharArray(_rawFrame, sizeof(_rawFrame));
+        _rawFrameLen = frame.length();
 
-        _msgDataLen = (uint8_t)strtol(packet.substring(FLIPDOT_PACKET_DATA_LEN_OFFSET, FLIPDOT_PACKET_DATA_LEN_LEN).c_str(), NULL, 16);
-        _signAddress = (uint16_t)strtol(packet.substring(FLIPDOT_PACKET_SIGN_ADDRESS_OFFSET, FLIPDOT_PACKET_SIGN_ADDRESS_LEN).c_str(), NULL, 16);
-        _msgType = (uint8_t)strtol(packet.substring(FLIPDOT_PACKET_MSG_TYPE_OFFSET, FLIPDOT_PACKET_MSG_TYPE_LEN).c_str(), NULL, 16);
+        _msgDataLen = (uint8_t)strtol(frame.substring(FLIPDOT_PACKET_DATA_LEN_OFFSET, FLIPDOT_PACKET_DATA_LEN_LEN).c_str(), NULL, 16);
+        _signAddress = (uint16_t)strtol(frame.substring(FLIPDOT_PACKET_SIGN_ADDRESS_OFFSET, FLIPDOT_PACKET_SIGN_ADDRESS_LEN).c_str(), NULL, 16);
+        _msgType = (uint8_t)strtol(frame.substring(FLIPDOT_PACKET_MSG_TYPE_OFFSET, FLIPDOT_PACKET_MSG_TYPE_LEN).c_str(), NULL, 16);
 
         for (int d = 0; d < _msgDataLen; d++)
         {
             int offset = FLIPDOT_PACKET_MSG_DATA_OFFSET + (d * 2);
-            _msgData[d] = (uint8_t)strtol(packet.substring(offset, offset + 2).c_str(), NULL, 16);
+            _msgData[d] = (uint8_t)strtol(frame.substring(offset, offset + 2).c_str(), NULL, 16);
         }
 
-        _checksum = (uint8_t)strtol(packet.substring(FLIPDOT_PACKET_CHECKSUM_OFFSET, FLIPDOT_PACKET_CHECKSUM_LEN).c_str(), NULL, 16);
+        _checksum = (uint8_t)strtol(frame.substring(FLIPDOT_PACKET_CHECKSUM_OFFSET, FLIPDOT_PACKET_CHECKSUM_LEN).c_str(), NULL, 16);
 
         if (!verifyChecksum())
             return -2;
@@ -79,14 +79,14 @@ public:
 
         Serial.printf("\n");
 
-        Serial.printf("Raw Packet:\t%s\n", _rawPacket);
-        Serial.printf("Raw Packet Len:\t%d\n", _rawPacketLen);
+        Serial.printf("Raw Frame:\t%s\n", _rawFrame);
+        Serial.printf("Raw Frame Len:\t%d\n", _rawFrameLen);
         Serial.printf("\n");
         Serial.printf("Data Length:\t0x%02X\n", _msgDataLen);
         Serial.printf("Sign Address:\t0x%04X\n", _signAddress);
         Serial.printf("Msg Type:\t0x%02X\n", _msgType);
 
-        Serial.printf("Packet Type:\t%s\n", flipDotDebugger.getPacketType(_msgType, _msgData, _msgDataLen).c_str());
+        Serial.printf("Frame Type:\t%s\n", flipDotDebugger.getFrameType(_msgType, _msgData, _msgDataLen).c_str());
 
         Serial.printf("Msg Data:\t");
 
@@ -163,8 +163,8 @@ public:
     }
 
 private:
-    char _rawPacket[512];
-    int _rawPacketLen = 0;
+    char _rawFrame[512];
+    int _rawFrameLen = 0;
     uint8_t _msgDataLen = 0x00;
     uint16_t _signAddress;
     uint8_t _msgType;

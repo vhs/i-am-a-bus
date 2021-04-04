@@ -138,6 +138,45 @@ public:
         return _initializedSigns[signAddress];
     }
 
+    bool sendPixelData(int signAddress, const char *buffer, int bufferLines)
+    {
+        _flipDotSend.clear();
+        _flipDotSend.setSignAddress(signAddress);
+        _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_REQUEST_OPERATION);
+        _flipDotSend.addData(FLIPDOT_OPS_REQUEST_RECEIVE_PIXELS);
+
+        _sendFrame();
+
+        if (_receiveFrame() && _flipDotRecv.getMsgType() != FLIPDOT_MSG_TYPE_ACK_OPERATION && _flipDotRecv.getDataType() != FLIPDOT_ACK_RECEIVE_PIXELS)
+            return false;
+
+        _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_SEND_DATA);
+
+        for (int l = 0; l < bufferLines; l++)
+        {
+            _flipDotSend.setSignAddress(l << 4);
+            _flipDotSend.setData((const uint8_t *)buffer[l]);
+            _sendFrame();
+        }
+
+        _flipDotSend.clearData();
+        _flipDotSend.setSignAddress(signAddress);
+        _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_DATA_CHUNKS_SENT);
+        _sendFrame();
+
+        _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_BUS);
+        _flipDotSend.setData(FLIPDOT_BUS_QUERY_STATE);
+        _sendFrame();
+
+        if (_receiveFrame() && _flipDotRecv.getMsgType() != FLIPDOT_MSG_TYPE_REPORT_STATE && _flipDotRecv.getDataType() != FLIPDOT_STATE_SAVED)
+            return false;
+
+        _flipDotSend.clearData();
+        _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_PIXEL_COMPLETE);
+        _flipDotSend.setData(FLIPDOT_DATA_PIXELS_COMPLETE);
+        _sendFrame();
+    }
+
 private:
     bool _knownSigns[FLIPDOT_MAX_SIGN];
     bool _initializedSigns[FLIPDOT_MAX_SIGN];

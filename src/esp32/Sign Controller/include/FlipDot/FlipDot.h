@@ -57,7 +57,7 @@ public:
         _signAddress = (uint16_t)strtol(frame.substring(FLIPDOT_PACKET_SIGN_ADDRESS_OFFSET, FLIPDOT_PACKET_SIGN_ADDRESS_LEN).c_str(), NULL, 16);
         _msgType = (uint8_t)strtol(frame.substring(FLIPDOT_PACKET_MSG_TYPE_OFFSET, FLIPDOT_PACKET_MSG_TYPE_LEN).c_str(), NULL, 16);
 
-        for (int d = 0; d < _msgDataLen; d++)
+        for (int d = 0; d < (_msgDataLen); d++)
         {
             int offset = FLIPDOT_PACKET_MSG_DATA_OFFSET + (d * 2);
             _msgData[d] = (uint8_t)strtol(frame.substring(offset, offset + 2).c_str(), NULL, 16);
@@ -162,13 +162,33 @@ public:
         return true;
     }
 
+    boolean setData(const uint8_t *msgData)
+    {
+        _msgDataLen = 0;
+
+        if (sizeof(msgData) > sizeof(_msgData))
+        {
+            Serial.printf("FlipDot.setData received too much data\n");
+
+            return false;
+        }
+
+        for (int c = 0; c < sizeof(msgData); c++)
+        {
+            _msgData[c] = msgData[c];
+            _msgDataLen++;
+        }
+
+        return true;
+    }
+
 private:
     char _rawFrame[512];
     int _rawFrameLen = 0;
     uint8_t _msgDataLen = 0x00;
     uint16_t _signAddress;
     uint8_t _msgType;
-    uint8_t _msgData[FLIPDOT_MAX_DATA];
+    uint8_t _msgData[FLIPDOT_MAX_DATA + 1];
     uint8_t _checksum = 0x00;
 
     String convertHex8(uint8_t val)
@@ -198,7 +218,7 @@ private:
 
         char buffer[3];
 
-        for (int d = 0; d < _msgDataLen; d++)
+        for (int d = 0; d < (_msgDataLen - 1); d++)
         {
             sprintf(buffer, "%02X", _msgData[d]);
             outp += String(buffer);

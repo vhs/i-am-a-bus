@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+#include <SoftwareSerial.h>
+
 #include <SPI.h>
 #include <U8g2lib.h>
 #include <FunctionFSM.h>
@@ -9,3 +11,5 @@
 #include "FSM.h"
 #include "sign_static.h"
 #include "SignBus.h"
+
+#include "config.h"

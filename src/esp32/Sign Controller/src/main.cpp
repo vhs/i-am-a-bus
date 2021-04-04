@@ -1,19 +1,6 @@
 #include "platform.h"
 
-#define pin_led_green 4
-#define pin_led_red 23
-
-#define pin_rot_a 14
-#define pin_rot_b 27
-#define pin_rot_sw 13
-
-#define pin_rs485_rx 18
-#define pin_rs485_tx 19
-#define pin_rs485_en 26 // RX=Low, TX=High
-
-// We actually use hardware defaults for i2c, but defined here for completeness
-#define pin_i2c_sda 21
-#define pin_i2c_scl 22
+#include "config.h"
 
 /* Constructor  for screen */
 U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R0);

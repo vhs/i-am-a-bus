@@ -2,15 +2,13 @@
 
 #include "platform.h"
 
-// clang-format off
-/*
-FSM States:
-  Boot - Boot up, sends init code to sign, auto falls to rest
-  Rest - Resting loop. Rotary encoder adjusts brightness.
-  Select - Selecting the message or select "program" to move into that state, control with rotary encoder. Times out back to rest.
-  Program - Serves up network to join with phone, serves up webpage to modify stored codes. Times out back to rest.
-*/
-// clang-format on
+/**
+ * FSM States:
+ *  Boot - Boot up, sends init code to sign, auto falls to rest
+ *  Rest - Resting loop. Rotary encoder adjusts brightness.
+ *  Select - Selecting the message or select "program" to move into that state, control with rotary encoder. Times out back to rest.
+ *  Program - Serves up network to join with phone, serves up webpage to modify stored codes. Times out back to rest.
+ */
 
 // fsm state functions
 void FSM_STATE_Boot_start()

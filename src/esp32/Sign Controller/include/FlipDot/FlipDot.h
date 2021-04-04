@@ -37,6 +37,9 @@ public:
         encodedPacket += convertHexData();
         encodedPacket += convertHex8(_checksum);
 
+        encodedPacket.trim();
+        encodedPacket += "\r\n";
+
         return encodedPacket;
     }
 

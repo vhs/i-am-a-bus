@@ -132,6 +132,16 @@ public:
         _msgType = msgType;
     }
 
+    uint8_t getDataType()
+    {
+        return _msgData[0];
+    }
+
+    void setDataType(uint8_t dataType)
+    {
+        _msgData[0] = dataType;
+    }
+
     void clearData()
     {
         _msgDataLen = 0;

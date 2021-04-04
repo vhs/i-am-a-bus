@@ -26,8 +26,7 @@ public:
 
     String encodeFrame()
     {
-        if (!generateChecksum())
-            return "ERROR";
+        generateChecksum();
 
         String encodedFrame = ":";
 
@@ -101,18 +100,41 @@ public:
         Serial.printf("\n");
 
         Serial.printf("Checksum:\t0x%02X\n", _checksum);
+        Serial.printf("Verified:\t%d\n", verifyChecksum());
 
         Serial.printf("\n");
     }
 
     bool verifyChecksum()
     {
-        return true;
+        uint8_t checksum = 0x0;
+
+        checksum -= _msgDataLen;
+        checksum -= (_signAddress >> 8) & 0xff;
+        checksum -= _signAddress & 0xff;
+        checksum -= _msgType;
+
+        for (int d = 0; d < _msgDataLen; d++)
+        {
+            checksum -= _msgData[d];
+        }
+
+        return (checksum == _checksum);
     }
 
-    bool generateChecksum()
+    void generateChecksum()
     {
-        return true;
+        uint8_t checksum = 0x0;
+
+        checksum -= _msgDataLen;
+        checksum -= (_signAddress >> 8) & 0xff;
+        checksum -= _signAddress & 0xff;
+        checksum -= _msgType;
+
+        for (int d = 0; d < _msgDataLen; d++)
+        {
+            checksum -= _msgData[d];
+        }
     }
 
     uint16_t getSignAddress()
@@ -218,7 +240,7 @@ private:
 
         char buffer[3];
 
-        for (int d = 0; d < (_msgDataLen - 1); d++)
+        for (int d = 0; d < (_msgDataLen); d++)
         {
             sprintf(buffer, "%02X", _msgData[d]);
             outp += String(buffer);

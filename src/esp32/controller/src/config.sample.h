@@ -14,3 +14,9 @@
 // We actually use hardware defaults for I2C, but defined here for completeness
 #define PIN_I2C_SDA 21
 #define PIN_I2C_SCL 22
+
+#define WIFI_SSID "Wireless Network Name"
+#define WIFI_PASS "PleasePickASecurePassword"
+#define HOST_NAME "mobile-bus-controller"
+#define HTTP_USER "admin"
+#define HTTP_PASS "admin"

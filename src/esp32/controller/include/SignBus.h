@@ -128,6 +128,16 @@ public:
         return _initSigns;
     }
 
+    bool *getInitializedSigns()
+    {
+        return _initializedSigns;
+    }
+
+    bool isSignInitialized(int signAddress)
+    {
+        return _initializedSigns[signAddress];
+    }
+
 private:
     bool _knownSigns[FLIPDOT_MAX_SIGN];
     bool _initializedSigns[FLIPDOT_MAX_SIGN];

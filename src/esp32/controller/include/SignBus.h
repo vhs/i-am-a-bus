@@ -8,21 +8,6 @@
 
 SoftwareSerial RS485Serial;
 
-void IRAM_ATTR ISR_rot_a()
-{
-    //
-}
-
-void IRAM_ATTR ISR_rot_b()
-{
-    //
-}
-
-void IRAM_ATTR ISR_rot_sw()
-{
-    //
-}
-
 const uint8_t initCmd[17] = {0x08, 0xB3, 0x00, 0x10, 0x0C, 0x10, 0x00, 0x78, 0x03, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 class SignBus

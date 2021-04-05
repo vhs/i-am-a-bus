@@ -10,6 +10,10 @@
 
 #include "SignBus.h"
 
+#include "util.h"
+
+#include "webserver.h"
+
 #include "FSM.h"
 
 #include "sign_static.h"

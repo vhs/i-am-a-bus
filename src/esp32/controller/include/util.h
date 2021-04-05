@@ -2,6 +2,7 @@
 #include <SPIFFS.h>
 
 String dirtyConfig = "";
+String dirtyText = "";
 
 void writeConfig()
 {

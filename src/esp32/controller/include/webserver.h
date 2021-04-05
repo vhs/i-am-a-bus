@@ -93,6 +93,8 @@ void webserver_start()
 
         Serial.printf("Updating text to: %s\n", updateTextParam->value().c_str());
 
+        dirtyText = updateTextParam->value();
+
         request->send(200, "application/json", String("{\"result\":\"OK\"}"));
     });
 

@@ -8,9 +8,9 @@
 #include <U8g2lib.h>
 #include <FunctionFSM.h>
 
-#include "SignBus.h"
-
 #include "util.h"
+
+#include "SignBus.h"
 
 #include "webserver.h"
 

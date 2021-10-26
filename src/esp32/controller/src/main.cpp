@@ -50,6 +50,12 @@ void loop()
     dirtyConfig = "";
   }
 
+  if (dirtyText != "")
+  {
+    writeText();
+    dirtyText = "";
+  }
+
   u8g2.firstPage();
   do
   {

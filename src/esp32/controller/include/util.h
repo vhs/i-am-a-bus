@@ -31,3 +31,14 @@ void writeConfig()
 
     dirtyConfig = "";
 }
+
+void writeText()
+{
+    Serial.printf("Writing text...\n");
+
+    // signBus.sendPixelData
+
+    yield();
+
+    dirtyText = "";
+}

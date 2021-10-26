@@ -47,20 +47,21 @@ void loop()
   if (dirtyConfig != "")
   {
     writeConfig();
-    dirtyConfig = "";
   }
 
   if (dirtyText != "")
   {
     writeText();
-    dirtyText = "";
   }
 
   u8g2.firstPage();
-  do
-  {
+  do {
+    // u8g2.drawBox(0,0,128,64);
+    u8g2.setFont(u8g2_font_ncenB08_tf);
+    u8g2.drawStr(0, 12, "i-am-a-bus");
+    u8g2.drawFrame(1, 63 - (16 + 2), 120 + 2, 16 + 2);
     u8g2.setFont(u8g2_font_ncenB14_tr);
-    u8g2.drawStr(0, 20, "BRO I'M A BUS");
+    u8g2.drawStr(2, 63 - (16 + 2) + 16, signText.c_str());
   } while (u8g2.nextPage());
 
   // Disabled because it seems to interfere with the webserver

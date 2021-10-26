@@ -6,6 +6,8 @@
 String dirtyConfig = "";
 String dirtyText = "";
 
+String signText = "";
+
 void writeConfig()
 {
     Serial.printf("Writing config...\n");
@@ -39,6 +41,8 @@ void writeText()
     // signBus.sendPixelData
 
     yield();
+
+    signText = dirtyText;
 
     dirtyText = "";
 }

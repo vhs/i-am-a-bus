@@ -15,7 +15,7 @@ void setup()
   Serial.println();
   Serial.flush(); // Get serial all nice and ready, with some new lines.
 
-  u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the display */
+  u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the LCD display */
 
   pinMode(PIN_LED_GREEN, OUTPUT);
   digitalWrite(PIN_LED_GREEN, LOW);
@@ -54,7 +54,7 @@ void loop()
   do
   {
     u8g2.setFont(u8g2_font_ncenB14_tr);
-    u8g2.drawStr(0, 20, "BITCH I'M A BUS");
+    u8g2.drawStr(0, 20, "BRO I'M A BUS");
   } while (u8g2.nextPage());
 
   // Disabled because it seems to interfere with the webserver

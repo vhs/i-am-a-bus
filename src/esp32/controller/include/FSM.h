@@ -10,7 +10,7 @@
  *  Program - Serves up network to join with phone, serves up webpage to modify stored codes. Times out back to rest.
  */
 
-// fsm state functions
+ // fsm state functions
 void FSM_STATE_Boot_start()
 {
     Serial.println("Entering Boot state");
@@ -31,11 +31,35 @@ void FSM_STATE_Rest_start()
 
 void FSM_STATE_Rest_loop()
 {
+    u8g2.firstPage();
+
+    do {
+        // u8g2.drawBox(0,0,128,64);
+        u8g2.setFont(u8g2_font_ncenB08_tf);
+        u8g2.drawStr(0, 12, "i-am-a-bus");
+        u8g2.drawFrame(1, 63 - (16 + 2), 120 + 2, 16 + 2);
+        u8g2.setFont(u8g2_font_ncenB14_tr);
+        u8g2.drawStr(2, 63 - (16 + 2) + 16, signText.c_str());
+    } while (u8g2.nextPage());
 }
 
 void FSM_STATE_Rest_stop()
 {
     Serial.println("Leaving Rest state");
+}
+
+void FSM_STATE_Menu_start()
+{
+    Serial.println("Entering Menu State");
+}
+
+void FSM_STATE_Menu_loop()
+{
+}
+
+void FSM_STATE_Menu_stop()
+{
+    Serial.println("Leaving Menu State");
 }
 
 void FSM_STATE_Select_start()
@@ -51,25 +75,20 @@ void FSM_STATE_Select_stop()
 {
 }
 
-void FSM_STATE_Program_start()
-{
-    Serial.println("Entering Program State");
-}
-
-void FSM_STATE_Program_loop()
-{
-}
-
-void FSM_STATE_Program_stop()
-{
-    Serial.println("Leaving Program State");
-}
-
 // fsm states
 FunctionState state_boot(&FSM_STATE_Boot_start, nullptr, nullptr);
 FunctionState state_rest(&FSM_STATE_Rest_start, &FSM_STATE_Rest_loop, &FSM_STATE_Rest_stop);
+FunctionState state_menu(&FSM_STATE_Menu_start, &FSM_STATE_Menu_loop, &FSM_STATE_Menu_stop);
 FunctionState state_select(&FSM_STATE_Select_start, &FSM_STATE_Select_loop, &FSM_STATE_Select_stop);
-FunctionState state_program(&FSM_STATE_Program_start, &FSM_STATE_Program_loop, &FSM_STATE_Program_stop);
 
 // fsm
 FunctionFsm fsm(&state_boot);
+
+enum FSM_Triggers {
+    FSM_TRIGGER_MENU
+};
+
+void FSM_Init() {
+    fsm.add_transition(&state_rest, &state_menu, FSM_TRIGGER_MENU, nullptr);
+    fsm.add_transition(&state_menu, &state_rest, FSM_TRIGGER_MENU, nullptr);
+}

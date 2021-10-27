@@ -16,7 +16,11 @@ class LEDTextSelector extends Component {
   }
 
   async componentDidMount () {
-    await this.getSignText()
+    this.intervalId = setInterval(() => this.getSignText(), 1000)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.intervalId)
   }
 
   async getSignText () {
@@ -37,11 +41,11 @@ class LEDTextSelector extends Component {
     }
   }
 
-  async pushSignText () {
+  pushSignText () {
     if (this.state.text === '') { return alert('Error: No text selected') }
 
     try {
-      const apiResult = await fetch('/api/updatetext', {
+      fetch('/api/updatetext', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -49,10 +53,6 @@ class LEDTextSelector extends Component {
         },
         body: 'text=' + encodeURIComponent(this.state.dirtyText)
       })
-
-      const { result, text } = await apiResult.json()
-
-      if (result === 'OK' && text !== undefined) { this.setState({ text }) }
     } catch (err) {
       return alert('Error: ' + err)
     }

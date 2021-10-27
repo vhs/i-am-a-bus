@@ -12,23 +12,47 @@ class LEDTextSelector extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { text: '' }
-
-    this.pushSignText = this.pushSignText.bind(this)
+    this.state = { dirtyText: '', text: '' }
   }
 
-  pushSignText () {
+  async componentDidMount () {
+    await this.getSignText()
+  }
+
+  async getSignText () {
+    try {
+      const apiResult = await fetch('/api/getcurrenttext', {
+        method: 'GET',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+
+      const { text } = await apiResult.json()
+
+      this.setState({ text })
+    } catch (err) {
+      return alert('Error: ' + err)
+    }
+  }
+
+  async pushSignText () {
     if (this.state.text === '') { return alert('Error: No text selected') }
 
     try {
-      fetch('/api/updatetext', {
+      const apiResult = await fetch('/api/updatetext', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'text=' + encodeURIComponent(this.state.text)
+        body: 'text=' + encodeURIComponent(this.state.dirtyText)
       })
+
+      const { result, text } = await apiResult.json()
+
+      if (result === 'OK' && text !== undefined) { this.setState({ text }) }
     } catch (err) {
       return alert('Error: ' + err)
     }
@@ -37,7 +61,7 @@ class LEDTextSelector extends Component {
   render () {
     const Options = this.props.options.map((option, idx) => {
       return (
-        <Form.Check key={idx} type='radio' id={'LEDTextOption' + idx} name='LEDTextSelector' label={option} onClick={() => this.setState({ text: option })} />
+        <Form.Check key={idx} type='radio' id={'LEDTextOption' + idx} name='LEDTextSelector' label={option} onClick={() => this.setState({ dirtyText: option })} />
       )
     })
 

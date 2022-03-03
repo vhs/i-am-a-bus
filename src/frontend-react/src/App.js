@@ -12,26 +12,25 @@ import ConfigurationEditor from './components/ConfigurationEditor/ConfigurationE
 
 import './App.css'
 
+const configDefault = { default: '', texts: { options: [] } }
+
 class App extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { config: { texts: { options: [] } }, error: null }
-
-    this.updateConfig = this.updateConfig.bind(this)
+    this.state = { config: configDefault, error: null }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     try {
-      fetch('/config.json')
-        .then((result) => result.json())
-        .then((config) => {
-          this.setState({ config })
-        })
+      const data = await fetch('/config.json')
+      const config = await data.json()
+
+      this.setState({ config })
     } catch (err) {
       console.log('Error fetching config file:')
       console.log(err)
-      this.setState({ error: 'We encountered an unexpected error while fetching config file' })
+      this.setState({ error: 'We encountered an unexpected error while fetching config file', config: configDefault })
     }
   }
 
@@ -53,7 +52,7 @@ class App extends Component {
                 <LEDTextSelector options={this.state.config.texts.options} />
               </Tab>
               <Tab eventKey="textupdater" title="Update Config">
-                <ConfigurationEditor config={this.state.config} updateConfig={this.updateConfig} />
+                <ConfigurationEditor config={this.state.config} updateConfig={(config) => this.updateConfig(config)} />
               </Tab>
             </Tabs>
           </Col>

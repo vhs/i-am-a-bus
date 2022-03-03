@@ -16,7 +16,9 @@ class LEDTextSelector extends Component {
   }
 
   async componentDidMount () {
-    this.intervalId = setInterval(() => this.getSignText(), 1000)
+    await this.getSignText()
+
+    this.intervalId = setInterval(() => this.getSignText(), 5000)
   }
 
   componentWillUnmount () {
@@ -37,12 +39,12 @@ class LEDTextSelector extends Component {
 
       this.setState({ text })
     } catch (err) {
-      return alert('Error: ' + err)
+      console.error('Error: ' + err)
     }
   }
 
   pushSignText () {
-    if (this.state.text === '') { return alert('Error: No text selected') }
+    if (this.state.dirtyText === '') { return alert('Error: No text selected') }
 
     try {
       fetch('/api/updatetext', {
@@ -53,6 +55,8 @@ class LEDTextSelector extends Component {
         },
         body: 'text=' + encodeURIComponent(this.state.dirtyText)
       })
+
+      this.setState({ text: this.state.dirtyText })
     } catch (err) {
       return alert('Error: ' + err)
     }

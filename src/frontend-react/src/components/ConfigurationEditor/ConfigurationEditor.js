@@ -13,12 +13,7 @@ class ConfigurationEditor extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { ...{ newText: '', config: { texts: { options: [] } } }, ...props }
-
-    this.addSignTextOption = this.addSignTextOption.bind(this)
-    this.removeSignTextOption = this.removeSignTextOption.bind(this)
-    this.updateSignTextOption = this.updateSignTextOption.bind(this)
-    this.updateConfig = this.updateConfig.bind(this)
+    this.state = { ...{ newText: '', config: { default: '', texts: { options: [] } } }, ...props }
   }
 
   componentDidMount () {
@@ -72,6 +67,17 @@ class ConfigurationEditor extends Component {
     })
   }
 
+  updateDefaultText (text) {
+    if (text === '') { return alert('Error: Empty text') }
+
+    this.setState((currentState) => {
+      const newState = Object.assign({}, currentState)
+      newState.config.texts.default = text
+
+      return newState
+    })
+  }
+
   updateConfig () {
     try {
       fetch('/api/updateconfig', {
@@ -82,14 +88,17 @@ class ConfigurationEditor extends Component {
         },
         body: 'config=' + encodeURIComponent(JSON.stringify(this.state.config))
       })
-
-      this.props.updateConfig(this.state.config)
     } catch (err) {
       return alert('Error: ' + err)
     }
   }
 
   render () {
+    const DefaultTextOptions = this.state.config.texts.options.map((textOption, idx) => {
+      const selected = this.state.config.texts.default === textOption
+      return (<option key={idx} value={textOption} selected={selected}>{textOption}</option>)
+    })
+
     const Options = this.state.config.texts.options.map((option, idx) => {
       return (
         <Row className="spacious" key={idx}>
@@ -105,6 +114,19 @@ class ConfigurationEditor extends Component {
 
     return (
       <>
+        <Row>
+          <Col>
+            <h2>Default Text</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Control as="select" onChange={(e) => this.updateDefaultText(e.target.value)}>
+              <option value={this.state.config.texts.default}>{this.state.config.texts.default}</option>
+              {DefaultTextOptions}
+            </Form.Control>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <h2>Text Options</h2>

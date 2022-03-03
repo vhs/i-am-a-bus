@@ -1,12 +1,94 @@
-#pragma once
+#ifndef IAMABUS_UTIL_H
+#define IAMABUS_UTIL_H
+
+#include "platform.h"
 
 #include <FS.h>
 #include <SPIFFS.h>
+#include <ArduinoJson.h>
+
+DynamicJsonDocument doc(2048);
+bool isConfigLoaded = false;
 
 String dirtyConfig = "";
-String dirtyText = "";
+String dirtySignText = "";
+String signText = "Initializing...";
+String texts[16];
 
-String signText = "";
+bool syncSign = false;
+
+String getConfig() {
+    String output;
+
+    serializeJson(doc, output);
+
+    return output;
+}
+
+void handleTextUpdate(void (*func)()) {
+    if (dirtySignText == "" || dirtySignText == signText) {
+        return;
+    }
+
+    signText = dirtySignText;
+    dirtySignText = "";
+
+    func();
+
+    syncSign = true;
+}
+
+String loadCurrentText() {
+    if (isConfigLoaded) return signText;
+
+    Serial.println("loadCurrentText: opening FS to read config");
+
+    File file = SPIFFS.open("/config.json");
+
+    yield();
+
+    if (!file)
+    {
+        Serial.println("- failed to open config.json for reading");
+        return "config error";
+    }
+
+    String jsonContent = "";
+
+    jsonContent = file.readString();
+
+    file.close();
+
+    deserializeJson(doc, jsonContent);
+
+    const char* currentTextVal = doc["texts"]["default"];
+
+    signText = String(currentTextVal);
+
+    isConfigLoaded = true;
+
+    return signText;
+}
+
+int loadTexts(String* textArray) {
+    loadCurrentText();
+
+    int size = 0;
+
+    for (int i = 0; i < sizeof(textArray); i++) {
+        Serial.println("loadText: " + String(i));
+
+        textArray[i] = "";
+
+        if (doc["texts"]["options"][i] != nullptr) {
+            textArray[i] = doc["texts"]["options"][i].as<String>();
+
+            size++;
+        }
+    }
+
+    return size;
+}
 
 void writeConfig()
 {
@@ -34,15 +116,4 @@ void writeConfig()
     dirtyConfig = "";
 }
 
-void writeText()
-{
-    Serial.printf("Writing text...\n");
-
-    // signBus.sendPixelData
-
-    yield();
-
-    signText = dirtyText;
-
-    dirtyText = "";
-}
+#endif

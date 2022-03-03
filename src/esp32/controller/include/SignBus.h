@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IAMABUS_SIGNBUS_H
+#define IAMABUS_SIGNBUS_H
 
 #include "config.h"
 
@@ -8,7 +9,7 @@
 
 SoftwareSerial RS485Serial;
 
-const uint8_t initCmd[17] = {0x08, 0xB3, 0x00, 0x10, 0x0C, 0x10, 0x00, 0x78, 0x03, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t initCmd[17] = { 0x08, 0xB3, 0x00, 0x10, 0x0C, 0x10, 0x00, 0x78, 0x03, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 class SignBus
 {
@@ -76,7 +77,7 @@ public:
                     {
                         _flipDotSend.clear();
                         _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_SEND_DATA);
-                        _flipDotSend.setData((const uint8_t *)initCmd);
+                        _flipDotSend.setData((const uint8_t*)initCmd);
 
                         _sendFrame();
 
@@ -113,7 +114,7 @@ public:
         return _initSigns;
     }
 
-    bool *getInitializedSigns()
+    bool* getInitializedSigns()
     {
         return _initializedSigns;
     }
@@ -123,7 +124,7 @@ public:
         return _initializedSigns[signAddress];
     }
 
-    bool sendPixelData(int signAddress, const char *buffer, int bufferLines)
+    bool sendPixelData(int signAddress, const char* buffer, int bufferLines)
     {
         _flipDotSend.clear();
         _flipDotSend.setSignAddress(signAddress);
@@ -140,7 +141,7 @@ public:
         for (int l = 0; l < bufferLines; l++)
         {
             _flipDotSend.setSignAddress(l << 4);
-            _flipDotSend.setData((const uint8_t *)buffer[l]);
+            _flipDotSend.setData((const uint8_t*)buffer[l]);
             _sendFrame();
         }
 
@@ -198,3 +199,5 @@ private:
 };
 
 SignBus signBus(PIN_RS485_RX, PIN_RS485_TX, PIN_RS485_EN);
+
+#endif

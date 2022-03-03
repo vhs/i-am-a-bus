@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IAMABUS_FLIPDOT_H
+#define IAMABUS_FLIPDOT_H
 
 #include <Arduino.h>
 
@@ -186,7 +187,7 @@ public:
         return true;
     }
 
-    boolean setData(const uint8_t *msgData)
+    boolean setData(const uint8_t* msgData)
     {
         _msgDataLen = 0;
 
@@ -251,3 +252,5 @@ private:
         return outp;
     }
 };
+
+#endif

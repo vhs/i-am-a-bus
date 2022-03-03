@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IAMABUS_FLIPDOT_PROTOCOL_H
+#define IAMABUS_FLIPDOT_PROTOCOL_H
 
 #define FLIPDOT_MAX_DATA 16
 #define FLIPDOT_MAX_SIGN 16
@@ -73,10 +74,12 @@ struct FlipDotPacket
 
 typedef struct FlipDotPacket FlipDotPacket;
 
-FlipDotPacket FlipDotPacket_Discovery = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_DISCOVER}, .msgDataLen = 0x01};
+FlipDotPacket FlipDotPacket_Discovery = { .msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_DISCOVER}, .msgDataLen = 0x01 };
 
-FlipDotPacket FlipDotPacket_Goodbye = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_GOODBYE}, .msgDataLen = 0x01};
+FlipDotPacket FlipDotPacket_Goodbye = { .msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_GOODBYE}, .msgDataLen = 0x01 };
 
-FlipDotPacket FlipDotPacket_Query_State = {.msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_QUERY_STATE}, .msgDataLen = 0x01};
+FlipDotPacket FlipDotPacket_Query_State = { .msgType = FLIPDOT_MSG_TYPE_BUS, .msgData = {FLIPDOT_BUS_QUERY_STATE}, .msgDataLen = 0x01 };
 
-FlipDotPacket FlipDotPacket_Pixels_Complete = {.msgType = FLIPDOT_MSG_TYPE_PIXEL_COMPLETE, .msgData = {FLIPDOT_DATA_PIXELS_COMPLETE}, .msgDataLen = 0x01};
+FlipDotPacket FlipDotPacket_Pixels_Complete = { .msgType = FLIPDOT_MSG_TYPE_PIXEL_COMPLETE, .msgData = {FLIPDOT_DATA_PIXELS_COMPLETE}, .msgDataLen = 0x01 };
+
+#endif

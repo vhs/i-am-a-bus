@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IAMABUS_RS485_H
+#define IAMABUS_RS485_H
 
 #include "platform.h"
 
@@ -17,3 +18,5 @@ public:
         // Do stuff
     }
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IAMABUS_FLIPDOT_DEBUG_H
+#define IAMABUS_FLIPDOT_DEBUG_H
 
 #include <Arduino.h>
 
@@ -7,7 +8,7 @@
 class FlipDotDebugger
 {
 public:
-    String getFrameType(uint8_t msgType, uint8_t *msgData, uint8_t msgDataLen)
+    String getFrameType(uint8_t msgType, uint8_t* msgData, uint8_t msgDataLen)
     {
         String result = "";
 
@@ -139,9 +140,9 @@ public:
             case FLIPDOT_ACK_RECEIVE_CONFIG:
                 result = "FLIPDOT_ACK_RECEIVE_CONFIG";
                 break;
-            // case FLIPDOT_ACK_SHOW_LOADED_PAGE:
-            //     result = "FLIPDOT_ACK_SHOW_LOADED_PAGE";
-            //     break;
+                // case FLIPDOT_ACK_SHOW_LOADED_PAGE:
+                //     result = "FLIPDOT_ACK_SHOW_LOADED_PAGE";
+                //     break;
             case FLIPDOT_ACK_LOAD_NEXT_PAGE:
                 result = "FLIPDOT_ACK_LOAD_NEXT_PAGE";
                 break;
@@ -160,3 +161,5 @@ public:
         return result;
     }
 };
+
+#endif

@@ -7,8 +7,14 @@
 
 #include "config.h"
 
+#include "util.h"
+
 /* Constructor for screen */
 U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R2);
+
+void initScreen() {
+    u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the LCD display */
+}
 
 void clearScreen() {
     u8g2.clear();

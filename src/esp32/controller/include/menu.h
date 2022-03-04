@@ -3,6 +3,7 @@
 
 #include "platform.h"
 
+#include "screen.h"
 #include "util.h"
 
 #include <RotaryEncoder.h>
@@ -41,7 +42,7 @@ int handleMainMenu() {
         Serial.printf("pos -> newPos: %d -> %d := %s\n", main_menu_pos, newPos, direction == 1 ? "CCW" : "CW");
 
         if (direction == 1) {
-            MAIN_MENU_INDEX = (MAIN_MENU_INDEX - 1 + 3) % MAIN_MENU_ITEM_COUNT;
+            MAIN_MENU_INDEX = (MAIN_MENU_INDEX - 1 + MAIN_MENU_ITEM_COUNT) % MAIN_MENU_ITEM_COUNT;
         }
         else if (direction == -1) {
             MAIN_MENU_INDEX = (MAIN_MENU_INDEX + 1) % MAIN_MENU_ITEM_COUNT;
@@ -109,16 +110,16 @@ int handleSelectMenu() {
         Serial.printf("SELECT_MENU_INDEX: %d -> ", SELECT_MENU_INDEX);
 
         if (direction == 1) {
-            SELECT_MENU_INDEX = (SELECT_MENU_INDEX + 1) % select_menu_size;
+            SELECT_MENU_INDEX = (SELECT_MENU_INDEX - 1 + select_menu_size) % select_menu_size;
         }
         else if (direction == -1) {
-            SELECT_MENU_INDEX = (SELECT_MENU_INDEX - 1 + 3) % select_menu_size;
-            select_menu_dirty = true;
+            SELECT_MENU_INDEX = (SELECT_MENU_INDEX + 1) % select_menu_size;
         }
 
         Serial.println(SELECT_MENU_INDEX);
 
         select_menu_pos = newPos;
+        select_menu_dirty = true;
     }
 
     if (select_menu_dirty) {

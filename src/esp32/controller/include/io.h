@@ -4,6 +4,10 @@
 #include "platform.h"
 #include "config.h"
 
+#ifndef DEBOUNCE_DELAY
+#define DEBOUNCE_DELAY 50
+#endif
+
 bool isPressedState1 = false;
 bool isPressedState2 = false;
 long nextCheckTime = 0;

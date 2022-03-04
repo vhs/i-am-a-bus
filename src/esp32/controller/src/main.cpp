@@ -1,6 +1,10 @@
 #include "platform.h"
 
-#include "config.h"
+#include "screen.h"
+#include "io.h"
+#include "webserver.h"
+#include "fsm.h"
+#include "sign.h"
 
 void setup()
 {
@@ -15,7 +19,7 @@ void setup()
   Serial.println();
   Serial.flush(); // Get serial all nice and ready, with some new lines.
 
-  u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the LCD display */
+  initScreen();
 
   drawBootScreen("Initializing...");
 

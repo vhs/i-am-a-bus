@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 #include <ArduinoOTA.h>
+
 #ifdef ESP32
 #include <ESPmDNS.h>
 #include <WiFi.h>
@@ -15,6 +16,7 @@
 #include <ESP8266mDNS.h>
 #endif
 #include <ESPAsyncWebServer.h>
+#include <SPIFFS.h>
 #include <SPIFFSEditor.h>
 
 #define MAX_CONTENT_LENGTH 16384

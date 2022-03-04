@@ -9,6 +9,7 @@
 #include "screen.h"
 #include "util.h"
 #include "menu.h"
+#include "SignBus.h"
 
 bool initialized = false;
 

@@ -18,13 +18,19 @@
 // #define WIFI_MODE_CLIENT
 #define WIFI_SSID "Wireless Network Name"
 #define WIFI_PASS "PleasePickASecurePassword"
+
 #define HOST_NAME "mobile-bus-controller"
+
 #define HTTP_USER "admin"
 #define HTTP_PASS "admin"
 
-#define U8G2_TITLE_FONT u8g2_font_ncenB08_tf
+#define U8G2_TITLE_FONT u8g2_font_ncenB14_tr
+#define U8G2_TITLE_TEXT "i-am-a-bus v1"
 #define U8G2_TITLE_FONT_OFFSET 12
-#define U8G2_TEXT_FONT u8g2_font_ncenB14_tr
+
+#define U8G2_MENU_FONT u8g2_font_helvR08_tf
+
+#define U8G2_TEXT_FONT u8g2_font_helvR08_tf 
 #define U8G2_TEXT_FONT_HEIGHT 16
 #define U8G2_TEXT_BEVEL_WIDTH 2
 #define UBG2_TEXT_OFFSET 63
@@ -41,3 +47,7 @@
 #define UBG2_FRAME_Y2 U8G2_TEXT_FONT_HEIGHT + U8G2_TEXT_BEVEL_WIDTH
 #define UBG2_TEXT_OFFSET_X U8G2_TEXT_BEVEL_WIDTH
 #define UBG2_TEXT_OFFSET_Y UBG2_TEXT_OFFSET - (U8G2_TEXT_FONT_HEIGHT + U8G2_TEXT_BEVEL_WIDTH) + U8G2_TEXT_FONT_HEIGHT
+
+#define DEBOUNCE_DELAY 50
+
+#define SCREENSAVER_TIMEOUT 30

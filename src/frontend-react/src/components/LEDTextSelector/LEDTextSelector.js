@@ -43,11 +43,11 @@ class LEDTextSelector extends Component {
     }
   }
 
-  pushSignText () {
+  async pushSignText () {
     if (this.state.dirtyText === '') { return alert('Error: No text selected') }
 
     try {
-      fetch('/api/updatetext', {
+      await fetch('/api/updatetext', {
         method: 'POST',
         mode: 'no-cors',
         headers: {

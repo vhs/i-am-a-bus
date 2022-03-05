@@ -1,10 +1,11 @@
 #include "platform.h"
 
-#include "screen.h"
-#include "io.h"
-#include "webserver.h"
-#include "fsm.h"
-#include "sign.h"
+#include "externals/screen.h"
+#include "externals/io.h"
+#include "externals/webserver.h"
+#include "externals/fsm.h"
+#include "externals/sign.h"
+#include "externals/util.h"
 
 void setup()
 {
@@ -62,24 +63,6 @@ void setup()
   FSM_Init();
 
   Serial.println("Finished setup");
-
-  Serial.printf("U8G2_BASE_X: %d\n", U8G2_BASE_X);
-  Serial.printf("U8G2_BASE_Y: %d\n", U8G2_BASE_Y);
-  Serial.printf("U8G2_HEIGHT: %d\n", U8G2_HEIGHT);
-  Serial.printf("U8G2_TEXT_FONT: %s\n", U8G2_TEXT_FONT);
-  Serial.printf("U8G2_TITLE_FONT: %s\n", U8G2_TITLE_FONT);
-  Serial.printf("U8G2_TITLE_FONT_OFFSET: %d\n", U8G2_TITLE_FONT_OFFSET);
-  Serial.printf("U8G2_WIDTH: %d\n", U8G2_WIDTH);
-  Serial.printf("UBG2_FRAME_Y2: %d\n", UBG2_FRAME_Y2);
-  Serial.printf("UBG2_FRAME_X1: %d\n", UBG2_FRAME_X1);
-  Serial.printf("UBG2_FRAME_Y1: %d\n", UBG2_FRAME_Y1);
-  Serial.printf("UBG2_FRAME_X2: %d\n", UBG2_FRAME_X2);
-  Serial.printf("UBG2_TEXT_OFFSET_X: %d\n", UBG2_TEXT_OFFSET_X);
-  Serial.printf("UBG2_TEXT_OFFSET_Y: %d\n", UBG2_TEXT_OFFSET_Y);
-  Serial.println("");
-  Serial.printf("Buffer Tile Height: %d\n", u8g2.getBufferTileHeight());
-  Serial.printf("Buffer Tile Width: %d\n", u8g2.getBufferTileWidth());
-  Serial.printf("Total Buffer Size: %d\n", (8 * u8g2.getBufferTileHeight() * u8g2.getBufferTileWidth()));
 }
 
 void loop()

@@ -1,0 +1,16 @@
+#ifndef IAMABUS_FSM_H
+#define IAMABUS_FSM_H
+
+#include "platform.h"
+
+#include <FunctionFSM.h>
+
+#include "externals/io.h"
+#include "externals/screen.h"
+#include "externals/util.h"
+#include "externals/menu.h"
+#include "signbus.hpp"
+
+bool initialized = false;
+
+#endif

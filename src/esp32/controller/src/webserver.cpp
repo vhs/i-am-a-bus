@@ -1,28 +1,4 @@
-#ifndef IAMABUS_WEBSERVER_H
-#define IAMABUS_WEBSERVER_H
-
-#include "platform.h"
-
-#include <Arduino.h>
-#include <ArduinoOTA.h>
-
-#ifdef ESP32
-#include <ESPmDNS.h>
-#include <WiFi.h>
-#include <AsyncTCP.h>
-#elif defined(ESP8266)
-#include <ESP8266WiFi.h>
-#include <ESPAsyncTCP.h>
-#include <ESP8266mDNS.h>
-#endif
-#include <ESPAsyncWebServer.h>
-#include <SPIFFS.h>
-#include <SPIFFSEditor.h>
-
-#define MAX_CONTENT_LENGTH 16384
-
-AsyncWebServer server(80);
-AsyncEventSource events("/events");
+#include "webserver.hpp"
 
 void webserver_start()
 {
@@ -179,5 +155,3 @@ void webserver_start()
 
     server.begin();
 }
-
-#endif

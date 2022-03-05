@@ -1,21 +1,4 @@
-#ifndef IAMABUS_UTIL_H
-#define IAMABUS_UTIL_H
-
-#include "platform.h"
-
-#include <FS.h>
-#include <SPIFFS.h>
-#include <ArduinoJson.h>
-
-DynamicJsonDocument doc(2048);
-bool isConfigLoaded = false;
-
-String dirtyConfig = "";
-String dirtySignText = "";
-String signText = "Initializing...";
-String texts[16];
-
-bool syncSign = false;
+#include "util.hpp"
 
 String getConfig() {
     String output;
@@ -115,5 +98,3 @@ void writeConfig()
 
     dirtyConfig = "";
 }
-
-#endif

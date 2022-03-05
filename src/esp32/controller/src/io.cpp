@@ -1,17 +1,4 @@
-#ifndef IAMABUS_IO_H
-#define IAMABUS_IO_H
-
-#include "platform.h"
-#include "config.h"
-
-#ifndef DEBOUNCE_DELAY
-#define DEBOUNCE_DELAY 50
-#endif
-
-bool isPressedState1 = false;
-bool isPressedState2 = false;
-long nextCheckTime = 0;
-bool isLatched = false;
+#include "io.hpp"
 
 bool readInput() {
     return digitalRead(PIN_ROT_SW) == LOW;
@@ -46,5 +33,3 @@ void setupPins() {
 
     digitalWrite(PIN_RS485_EN, LOW);
 }
-
-#endif

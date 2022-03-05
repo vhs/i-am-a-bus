@@ -1,0 +1,4 @@
+#ifndef IAMABUS_SCREENSAVER_H
+#define IAMABUS_SCREENSAVER_H
+
+#endif

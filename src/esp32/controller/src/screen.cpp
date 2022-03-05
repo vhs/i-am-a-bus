@@ -1,16 +1,4 @@
-#ifndef IAMABUS_SCREEN_H
-#define IAMABUS_SCREEN_H
-
-#include <U8g2lib.h>
-
-#include "platform.h"
-
-#include "config.h"
-
-#include "util.h"
-
-/* Constructor for screen */
-U8G2_SSD1309_128X64_NONAME2_F_HW_I2C u8g2(U8G2_R2);
+#include "screen.hpp"
 
 void initScreen() {
     u8g2.begin(); /* u8g2.begin() is required and will sent the setup/init sequence to the LCD display */
@@ -74,5 +62,3 @@ void displayMainScreen() {
     // clearScreen();
     drawMainScreen(signText);
 }
-
-#endif

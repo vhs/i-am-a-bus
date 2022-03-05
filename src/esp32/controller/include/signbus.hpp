@@ -1,10 +1,10 @@
 #ifndef IAMABUS_SIGNBUS_H
 #define IAMABUS_SIGNBUS_H
 
+#include "platform.h"
+
 #include <SoftwareSerial.h>
 #include <SPI.h>
-
-#include "platform.h"
 
 #include "FlipDot/FlipDot.h"
 

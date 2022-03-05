@@ -1,23 +1,4 @@
-#ifndef IAMABUS_FSM_H
-#define IAMABUS_FSM_H
-
-#include <FunctionFSM.h>
-
-#include "platform.h"
-
-#include "io.h"
-#include "screen.h"
-#include "util.h"
-#include "menu.h"
-#include "SignBus.h"
-
-bool initialized = false;
-
-enum FSM_Triggers {
-    FSM_TRIGGER_REST,
-    FSM_TRIGGER_MENU,
-    FSM_TRIGGER_SELECT
-};
+#include "fsm.hpp"
 
 /**
  * FSM States:
@@ -170,5 +151,3 @@ void FSM_Init() {
     else
         Serial.println("CRITICAL: Sign bus not initialized!");
 }
-
-#endif

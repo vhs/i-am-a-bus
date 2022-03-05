@@ -3,10 +3,7 @@
 
 #include "platform.h"
 
-#include <SoftwareSerial.h>
-#include <SPI.h>
-
-#include "FlipDot/FlipDot.h"
+#include <FlipDot.h>
 
 SoftwareSerial RS485Serial;
 

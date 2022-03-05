@@ -21,6 +21,20 @@
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>
 
+#include <RotaryEncoder.h>
+
+#include <U8g2lib.h>
+
+#include <ArduinoJson.h>
+
+#include <FunctionFSM.h>
+
+#include <SoftwareSerial.h>
+#include <SPI.h>
+
+#include <SoftwareSerial.h>
+#include <SPI.h>
+
 #include "config.h"
 
 #include "constants.h"

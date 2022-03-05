@@ -9,6 +9,7 @@
 #include "externals/screen.h"
 #include "externals/util.h"
 #include "externals/menu.h"
+#include "externals/screensaver.h"
 #include "signbus.hpp"
 
 bool initialized = false;

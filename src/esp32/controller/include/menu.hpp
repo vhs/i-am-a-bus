@@ -3,11 +3,10 @@
 
 #include "platform.h"
 
-#include <RotaryEncoder.h>
-
 #include "externals/io.h"
 #include "externals/screen.h"
 #include "externals/util.h"
+#include "externals/screensaver.h"
 
 RotaryEncoder encoder(PIN_ROT_A, PIN_ROT_B, RotaryEncoder::LatchMode::FOUR3);
 

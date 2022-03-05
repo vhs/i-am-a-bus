@@ -9,4 +9,6 @@ void resetMenu();
 int handleMainMenu();
 void displayMainMenu();
 
+extern RotaryEncoder encoder;
+
 #endif

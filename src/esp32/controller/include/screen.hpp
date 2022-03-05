@@ -3,8 +3,6 @@
 
 #include "platform.h"
 
-#include <U8g2lib.h>
-
 #include "externals/util.h"
 
 /* Constructor for screen */

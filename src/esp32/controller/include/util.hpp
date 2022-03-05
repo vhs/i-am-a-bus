@@ -3,10 +3,8 @@
 
 #include "platform.h"
 
-#include <FS.h>
-#include <ArduinoJson.h>
-
 DynamicJsonDocument doc(2048);
+
 bool isConfigLoaded = false;
 
 String dirtyConfig = "";

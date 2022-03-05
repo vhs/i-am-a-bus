@@ -29,6 +29,7 @@ int handleMainMenu() {
     {
         displayMainMenu();
         main_menu_dirty = false;
+        updateLastActiveTime();
     }
 
     if (checkButton()) {
@@ -84,6 +85,7 @@ int handleSelectMenu() {
     if (select_menu_dirty) {
         displaySelectMenu();
         select_menu_dirty = false;
+        updateLastActiveTime();
     }
 
     if (checkButton()) {

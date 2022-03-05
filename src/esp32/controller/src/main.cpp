@@ -6,6 +6,7 @@
 #include "externals/fsm.h"
 #include "externals/sign.h"
 #include "externals/util.h"
+#include "externals/screensaver.h"
 
 void setup()
 {
@@ -85,6 +86,8 @@ void loop()
 
     syncSign = false;
   }
+
+  checkScreenSaver();
 
   unsigned long endTime = millis();
   unsigned long elapsedTime = endTime - startTime;

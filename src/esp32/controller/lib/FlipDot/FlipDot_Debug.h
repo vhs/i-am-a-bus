@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#include "FlipDot/FlipDot_Protocol.h"
+#include <FlipDot_Protocol.h>
 
 class FlipDotDebugger
 {

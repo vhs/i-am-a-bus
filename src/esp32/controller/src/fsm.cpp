@@ -21,12 +21,13 @@ void FSM_STATE_Boot_start()
     drawMainScreen("Discovering LED signs...");
 
     Serial.print("Discovering LED signs...");
-    if (signBus.discoverSigns() > 0)
+    if (discoverSigns() > 0)
     {
         drawBootScreen("Initializing signs...");
-        signBus.initializeSigns();
+        initializeSigns();
     }
     Serial.println("done!");
+
     initialized = true;
 
     drawMainScreen("Ready");

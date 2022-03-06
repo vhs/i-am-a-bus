@@ -10,7 +10,7 @@
 #include "externals/util.h"
 #include "externals/menu.h"
 #include "externals/screensaver.h"
-#include "signbus.hpp"
+#include "externals/sign.h"
 
 bool initialized = false;
 

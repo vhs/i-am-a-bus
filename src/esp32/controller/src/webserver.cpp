@@ -87,8 +87,7 @@ void webserver_start()
 
             AsyncWebParameter* updateTextParam = request->getParam("text", true, false);
 
-            Serial.print("Text: ");
-            Serial.println(updateTextParam->value());
+            Serial.printf("Text: %s", updateTextParam->value().c_str());
 
             Serial.printf("Updating text to: %s\n", updateTextParam->value().c_str());
 

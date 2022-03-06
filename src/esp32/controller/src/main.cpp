@@ -93,5 +93,5 @@ void loop()
   unsigned long elapsedTime = endTime - startTime;
 
   if (elapsedTime > 50)
-    Serial.printf("Loop time: %sms\n", String(elapsedTime));
+    Serial.printf("Loop time: %sms\n", String(elapsedTime).c_str());
 }

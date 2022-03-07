@@ -27,6 +27,7 @@
 #define U8G2_TITLE_FONT u8g2_font_ncenB14_tr
 #define U8G2_TITLE_TEXT "i-am-a-bus v1"
 #define U8G2_TITLE_FONT_OFFSET 12
+#define U8G2_TITLE_X 0
 
 #define U8G2_MENU_FONT u8g2_font_helvR08_tf
 

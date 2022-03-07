@@ -15,7 +15,7 @@ void drawBootScreen(String text)
 
     do {
         u8g2.setFont(U8G2_TITLE_FONT);
-        u8g2.drawStr(UBG2_FRAME_X1, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
+        u8g2.drawStr(U8G2_TITLE_X, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
 
         u8g2.setFont(U8G2_TEXT_FONT);
         u8g2.drawStr(UBG2_FRAME_X1, u8g2.getHeight() - 2, text.c_str());
@@ -31,7 +31,7 @@ void drawMainScreen(String text)
     do {
         // u8g2.drawBox(0,0,128,64);
         u8g2.setFont(U8G2_TITLE_FONT);
-        u8g2.drawStr(UBG2_FRAME_X1, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
+        u8g2.drawStr(U8G2_TITLE_X, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
 
         // u8g2.drawLine(UBG2_FRAME_X1, u8g2.getHeight() - 16, 120, u8g2.getHeight() - 16);
 
@@ -49,7 +49,7 @@ void drawMenu(String text)
     do {
         // u8g2.drawBox(0,0,128,64);
         u8g2.setFont(U8G2_TITLE_FONT);
-        u8g2.drawStr(UBG2_FRAME_X1, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
+        u8g2.drawStr(U8G2_TITLE_X, U8G2_TITLE_FONT_OFFSET, U8G2_TITLE_TEXT);
 
         u8g2.setFont(U8G2_MENU_FONT);
         u8g2.drawStr(UBG2_FRAME_X1, u8g2.getHeight() - 16, text.c_str());

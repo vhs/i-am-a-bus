@@ -3,6 +3,8 @@
 
 #include "platform.h"
 
+#include "externals/screen.h"
+
 DynamicJsonDocument doc(2048);
 
 bool isConfigLoaded = false;

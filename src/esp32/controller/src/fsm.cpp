@@ -1,5 +1,7 @@
 #include "fsm.hpp"
 
+extern FunctionFsm fsm;
+
 /**
  * FSM States:
  *  Boot - Boot up, sends init code to sign, transitions to rest
@@ -11,35 +13,76 @@
  // fsm state functions
 void FSM_STATE_Boot_start()
 {
-    drawMainScreen("Booting...");
-    Serial.println("Entering Boot state");
+    initScreen();
+
+    drawBootScreen("Initializing...");
+
+    Serial.begin(115200);
+
+    while (!Serial)
+    {
+        ; // wait for serial port to connect. Needed for native USB port only
+    }
+
+    Serial.flush();
+    Serial.println();
+    Serial.println("Bus Sign Control");
+    Serial.println();
+    Serial.flush(); // Get serial all nice and ready, with some new lines.
+
+    Serial.println("Initializing...");
+
+    drawBootScreen("Initializing IO...");
+
+    setupPins();
+
+    // Initialize filesystem
+    drawBootScreen("Initializing FS...");
+
+    SPIFFS.begin();
 
     // Load default text
-    drawMainScreen("Loading default text...");
+    drawBootScreen("Loading default text...");
+
     loadCurrentText();
 
-    drawMainScreen("Discovering LED signs...");
+    drawBootScreen("Discovering LED signs...");
 
-    Serial.print("Discovering LED signs...");
-    if (discoverSigns() > 0)
+    int numSigns = discoverSigns();
+
+    if (numSigns > 0)
     {
+        Serial.printf("Found %d signs...\n", numSigns);
         drawBootScreen("Initializing signs...");
         initializeSigns();
     }
+    else
+    {
+        halt("No signs connected.");
+    }
+
     Serial.println("done!");
 
     initialized = true;
 
-    drawMainScreen("Ready");
+    drawBootScreen("Finished setup");
 }
 
 void FSM_STATE_Boot_loop() {
+    if (initialized)
+        fsm.trigger(FSM_TRIGGER_REST);
+    else
+        halt("CRITICAL: System not initialized!");
 }
 
-void FSM_STATE_Boot_stop()
-{
-    Serial.println("Leaving Boot state");
+void FSM_STATE_Boot_stop() {
+    Serial.println("Leaving Boot state...");
+
+    drawBootScreen("Starting up services...");
+
     updateLastActiveTime();
+
+    drawBootScreen("Ready");
 }
 
 // fsm states
@@ -53,7 +96,7 @@ void FSM_STATE_Rest_start()
 {
     Serial.println("Enter Rest state");
     clearScreen();
-    resetMenu();
+    resetMainMenu();
     drawMainScreen(signText);
     updateLastActiveTime();
 }
@@ -78,10 +121,9 @@ void FSM_STATE_Rest_stop()
 FunctionState state_rest(&FSM_STATE_Rest_start, &FSM_STATE_Rest_loop, &FSM_STATE_Rest_stop);
 
 // Main Menu
-
 void FSM_STATE_Main_Menu_start()
 {
-    Serial.println("Entering Menu State");
+    Serial.println("Entering Main Menu State");
     displayMainMenu();
     updateLastActiveTime();
 }
@@ -94,9 +136,13 @@ void FSM_STATE_Main_Menu_loop()
     {
         fsm.trigger(FSM_TRIGGER_REST);
     }
-    else if (menuAction == MENU_ACTION_SELECT)
+    else if (menuAction == MENU_ACTION_SELECT_MENU)
     {
         fsm.trigger(FSM_TRIGGER_SELECT_MENU);
+    }
+    else if (menuAction == MENU_ACTION_NETWORK_MENU)
+    {
+        fsm.trigger(FSM_TRIGGER_NETWORK_MENU);
     }
 
     handleTextUpdate(&displayMainMenu);
@@ -104,7 +150,7 @@ void FSM_STATE_Main_Menu_loop()
 
 void FSM_STATE_Main_Menu_stop()
 {
-    Serial.println("Leaving Menu State");
+    Serial.println("Leaving Main Menu State");
     updateLastActiveTime();
 }
 
@@ -114,7 +160,7 @@ FunctionState state_main_menu(&FSM_STATE_Main_Menu_start, &FSM_STATE_Main_Menu_l
 
 void FSM_STATE_Select_Menu_start()
 {
-    Serial.println("Entering Select state");
+    Serial.println("Entering Select Menu state");
     clearScreen();
     loadSelectOptions();
     displaySelectMenu();
@@ -141,12 +187,40 @@ void FSM_STATE_Select_Menu_loop()
 
 void FSM_STATE_Select_Menu_stop()
 {
-    Serial.println("Leaving Select State");
+    Serial.println("Leaving Select Menu State");
 
     updateLastActiveTime();
 }
 
 FunctionState state_select_menu(&FSM_STATE_Select_Menu_start, &FSM_STATE_Select_Menu_loop, &FSM_STATE_Select_Menu_stop);
+
+// Network Menu
+void FSM_STATE_Network_Menu_start()
+{
+    Serial.println("Entering Network Menu State");
+    displayNetworkMenu();
+    updateLastActiveTime();
+}
+
+void FSM_STATE_Network_Menu_loop()
+{
+    int menuAction = handleNetworkMenu();
+
+    if (menuAction == MENU_ACTION_EXIT)
+    {
+        fsm.trigger(FSM_TRIGGER_REST);
+    }
+
+    handleTextUpdate(&displayNetworkMenu);
+}
+
+void FSM_STATE_Network_Menu_stop()
+{
+    Serial.println("Leaving Network Menu State");
+    updateLastActiveTime();
+}
+
+FunctionState state_network_menu(&FSM_STATE_Network_Menu_start, &FSM_STATE_Network_Menu_loop, &FSM_STATE_Network_Menu_stop);
 
 // Screensaver
 
@@ -193,17 +267,17 @@ void FSM_Init() {
     fsm.add_transition(&state_main_menu, &state_select_menu, FSM_TRIGGER_SELECT_MENU, nullptr);
     fsm.add_transition(&state_select_menu, &state_main_menu, FSM_TRIGGER_MAIN_MENU, nullptr);
 
+    // Transition from menu to select and back
+    fsm.add_transition(&state_main_menu, &state_network_menu, FSM_TRIGGER_NETWORK_MENU, nullptr);
+    fsm.add_transition(&state_network_menu, &state_main_menu, FSM_TRIGGER_MAIN_MENU, nullptr);
+
     // Screensaver transitions
     fsm.add_transition(&state_rest, &state_screensaver, FSM_TRIGGER_SCREENSAVER, nullptr);
     fsm.add_transition(&state_main_menu, &state_screensaver, FSM_TRIGGER_SCREENSAVER, nullptr);
     fsm.add_transition(&state_select_menu, &state_screensaver, FSM_TRIGGER_SCREENSAVER, nullptr);
+    fsm.add_transition(&state_network_menu, &state_screensaver, FSM_TRIGGER_SCREENSAVER, nullptr);
     fsm.add_transition(&state_screensaver, &state_rest, FSM_TRIGGER_REST, nullptr);
 
     // Run FSM once to initialize
     fsm.run_machine();
-
-    if (initialized)
-        fsm.trigger(FSM_TRIGGER_REST);
-    else
-        Serial.println("CRITICAL: Sign bus not initialized!");
 }

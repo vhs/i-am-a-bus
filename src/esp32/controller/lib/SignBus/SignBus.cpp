@@ -1,24 +1,18 @@
 #include "SignBus.hpp"
 
-#include <SoftwareSerial.h>
-#include <SPI.h>
-
-#define FLIPDOT_PIXELS_PER_LINE 16
-
-SoftwareSerial RS485Serial;
-
-const uint8_t initCmd[17] = { 0x08, 0xB3, 0x00, 0x10, 0x0C, 0x10, 0x00, 0x78, 0x03, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00 };
-
 SignBus::SignBus(int rxPin, int txPin, int enPin)
 {
     _enPin = enPin;
-    RS485Serial.begin(19200, SWSERIAL_8N1, rxPin, txPin, false, 256);
 
-    for (int sa = 0; sa < FLIPDOT_MAX_SIGN; sa++)
-        _knownSigns[sa] = false;
+    _RS485Serial.begin(19200, SWSERIAL_8N1, rxPin, txPin, false, 25, 256 * 9);
 
-    for (int sa = 0; sa < FLIPDOT_MAX_SIGN; sa++)
-        _initializedSigns[sa] = false;
+    if (!_RS485Serial) {
+        _halt("Invalid SoftwareSerial pin configuration, check config");
+    }
+
+    resetSigns();
+
+    _RS485Serial.flush();
 }
 
 int SignBus::discoverSigns()
@@ -29,21 +23,29 @@ int SignBus::discoverSigns()
     _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_BUS);
     _flipDotSend.addData(FLIPDOT_BUS_DISCOVER);
 
-    for (int sa = 0; sa < FLIPDOT_MAX_SIGN; sa++)
+    for (int sa = 0; sa < FLIPDOT_MAX_SIGNS; sa++)
     {
         _flipDotSend.setSignAddress(sa);
 
         _sendFrame();
 
-        delay(25);
+        bool recvResult = _receiveFrame();
 
-        if (_receiveFrame())
+        if (recvResult)
         {
             if (_flipDotRecv.getMsgType() == FLIPDOT_MSG_TYPE_REPORT_STATE && _flipDotRecv.getDataType() == FLIPDOT_STATE_UNCONFIGURED)
             {
                 _knownSigns[sa] = true;
                 _foundSigns++;
+                Serial.printf("Sign FOUND at %d\n", sa);
             }
+            else {
+                Serial.printf("Invalid sign result for sign %d:\n%s\n", sa, _receiveBuffer.c_str());
+            }
+        }
+        else
+        {
+            Serial.printf("No sign at %d\n", sa);
         }
     }
 
@@ -54,7 +56,7 @@ int SignBus::initializeSigns()
 {
     _initSigns = 0;
 
-    for (int sa = 0; sa < FLIPDOT_MAX_SIGN; sa++)
+    for (int sa = 0; sa < FLIPDOT_MAX_SIGNS; sa++)
     {
         if (_knownSigns[sa] == true)
         {
@@ -162,6 +164,8 @@ bool SignBus::sendPixelData(int signAddress, uint8_t* buffer, int bufferLines)
     _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_PIXEL_COMPLETE);
     _flipDotSend.setData(FLIPDOT_DATA_PIXELS_COMPLETE);
     _sendFrame();
+
+    return true;
 }
 
 bool SignBus::sendPixelData(int signAddress, const char* buffer, int bufferLines)
@@ -201,28 +205,66 @@ bool SignBus::sendPixelData(int signAddress, const char* buffer, int bufferLines
     _flipDotSend.setMsgType(FLIPDOT_MSG_TYPE_PIXEL_COMPLETE);
     _flipDotSend.setData(FLIPDOT_DATA_PIXELS_COMPLETE);
     _sendFrame();
+
+    return true;
+}
+
+void SignBus::resetSigns() {
+    for (int sa = 0; sa < FLIPDOT_MAX_SIGNS; sa++)
+        _knownSigns[sa] = false;
+
+    for (int sa = 0; sa < FLIPDOT_MAX_SIGNS; sa++)
+        _initializedSigns[sa] = false;
 }
 
 bool SignBus::_sendFrame()
 {
-    _buffer = _flipDotSend.encodeFrame();
+    _sendBuffer = _flipDotSend.encodeFrame();
 
     digitalWrite(_enPin, HIGH);
 
-    return (RS485Serial.write(_buffer.c_str()) > 0);
+    delay(30);
+
+    int sendResult = _RS485Serial.printf("%s\r\n", _sendBuffer.c_str());
+
+    delay(30);
+
+    return (sendResult > 0);
 }
 
 bool SignBus::_receiveFrame()
 {
+    _receiveBuffer.clear();
+
     digitalWrite(_enPin, LOW);
 
-    delay(10);
+    delay(30);
 
-    _buffer = RS485Serial.readStringUntil('\n');
+    while (_RS485Serial.available()) {
+        _receiveBuffer += (char)_RS485Serial.read();
+    }
 
-    _buffer.trim();
+    if (_receiveBuffer.length() > 0)
+    {
+        _receiveBuffer.trim();
 
-    _flipDotRecv.clear();
+        _flipDotRecv.clear();
+        _flipDotRecv.decodeFrame(_receiveBuffer);
 
-    return _flipDotRecv.decodeFrame(_buffer);
+        int decodeResult = _flipDotRecv.decodeFrame(_receiveBuffer);
+
+        _receiveBuffer = "";
+
+        return decodeResult > 0;
+    }
+
+    return false;
+}
+
+void SignBus::_halt(String msg) {
+    Serial.println(msg);
+    Serial.flush();
+    while (true) {
+        delay(1000);
+    }
 }

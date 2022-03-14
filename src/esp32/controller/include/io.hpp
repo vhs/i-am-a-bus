@@ -8,4 +8,6 @@ bool isPressedState2 = false;
 long nextCheckTime = 0;
 bool isLatched = false;
 
+RotaryEncoder encoder(PIN_ROT_A, PIN_ROT_B, RotaryEncoder::LatchMode::FOUR3);
+
 #endif

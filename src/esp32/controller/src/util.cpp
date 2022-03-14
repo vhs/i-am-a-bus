@@ -98,3 +98,11 @@ void writeConfig()
 
     dirtyConfig = "";
 }
+
+void halt(String msg) {
+    drawBootScreen(msg);
+    Serial.flush();
+    while (true) {
+        delay(1000);
+    }
+}

@@ -22,6 +22,8 @@ void drawBootScreen(String text)
 
         delay(0);
     } while (u8g2.nextPage());
+
+    Serial.println(text);
 }
 
 void drawMainScreen(String text)

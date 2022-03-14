@@ -1,5 +1,3 @@
-/* This file was automatically generated.  Do not edit! */
-// #undef INTERFACE
 #if !defined(IAMABUS_UTIL_H)
 
 #include "platform.h"
@@ -9,6 +7,7 @@ int loadTexts(String* textArray);
 String loadCurrentText();
 void handleTextUpdate(void(*func)());
 void writeConfig();
+void halt(String msg);
 
 extern bool syncSign;
 extern String signText;

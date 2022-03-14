@@ -8,4 +8,6 @@ bool checkButton();
 bool latchInput();
 bool readInput();
 
+extern RotaryEncoder encoder;
+
 #endif

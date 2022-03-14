@@ -1,7 +1,6 @@
-#include "webserver.hpp"
+#include "network.hpp"
 
-void webserver_start()
-{
+void ota_init() {
     //Send OTA events to the browser
     ArduinoOTA.onStart([]() {
         events.send("Update Start", "ota");
@@ -33,11 +32,41 @@ void webserver_start()
             events.send("End Failed", "ota");
         }
     );
+
     ArduinoOTA.setHostname(HOST_NAME);
+}
+
+void ota_start() {
     ArduinoOTA.begin();
+}
 
+void ota_stop() {
+    ArduinoOTA.end();
+}
+
+void ota_loop() {
+    ArduinoOTA.handle();
+}
+
+void network_service_init() {
     MDNS.addService("http", "tcp", 80);
+}
 
+void network_service_start() {
+    if (!MDNS.begin(HOST_NAME)) {
+        halt("Error setting up MDNS responder!");
+        return;
+    }
+
+    Serial.println("mDNS responder started");
+}
+
+void network_service_stop() {
+    MDNS.end();
+}
+
+void webserver_init()
+{
     events.onConnect([](AsyncEventSourceClient* client) {
         client->send("hello!", NULL, millis(), 1000);
         }
@@ -152,5 +181,91 @@ void webserver_start()
         }
     );
 
+}
+
+void webserver_start() {
     server.begin();
+}
+
+void webserver_stop() {
+    server.end();
+}
+
+void wifi_start() {
+    drawBootScreen("Initializing WiFi...");
+
+#ifdef WIFI_MODE_CLIENT
+    WiFi.begin(WIFI_SSID, WIFI_PASS);
+
+    while (WiFi.status() != WL_CONNECTED) {
+        Serial.print(".");
+        delay(65);
+    }
+
+    IPAddress myIP = WiFi.localIP();
+#else
+    WiFi.softAP(WIFI_SSID, WIFI_PASS);
+    IPAddress myIP = WiFi.softAPIP();
+#endif
+    Serial.println("OK");
+    Serial.println("");
+    Serial.print("AP IP address: ");
+    Serial.println(myIP);
+}
+
+void wifi_stop() {
+    WiFi.disconnect(true);
+}
+
+void network_init() {
+    if (!networkInit) {
+        ota_init();
+
+        network_service_init();
+
+        webserver_init();
+
+        networkInit = true;
+    }
+};
+
+void network_start() {
+    if (!networkInit) {
+        network_init();
+    }
+
+    if (!networkUp) {
+        wifi_start();
+
+        ota_start();
+
+        network_service_start();
+
+        webserver_start();
+
+        networkUp = true;
+    }
+};
+
+void network_stop() {
+    if (networkUp) {
+        ota_stop();
+
+        network_service_stop();
+
+        webserver_stop();
+
+        wifi_stop();
+
+        networkUp = false;
+    }
+};
+
+void network_loop() {
+    if (networkUp)
+        ota_loop();
+};
+
+bool network_is_up() {
+    return networkUp;
 }

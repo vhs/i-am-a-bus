@@ -31,5 +31,5 @@ void setupPins() {
     pinMode(PIN_RS485_TX, OUTPUT);
     pinMode(PIN_RS485_EN, OUTPUT);
 
-    digitalWrite(PIN_RS485_EN, LOW);
+    digitalWrite(PIN_RS485_EN, HIGH);
 }

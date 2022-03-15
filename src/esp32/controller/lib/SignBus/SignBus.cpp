@@ -4,7 +4,7 @@ SignBus::SignBus(int rxPin, int txPin, int enPin)
 {
     _enPin = enPin;
 
-    _RS485Serial.begin(19200, SWSERIAL_8N1, rxPin, txPin, false, 25, 256 * 9);
+    _RS485Serial.begin(19200, SWSERIAL_8N1, rxPin, txPin, false, 256, 256 * 9);
 
     if (!_RS485Serial) {
         _halt("Invalid SoftwareSerial pin configuration, check config");
